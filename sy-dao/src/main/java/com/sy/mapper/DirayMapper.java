@@ -22,7 +22,7 @@ public interface DirayMapper extends DirayResultMap {
 	
 	@ResultMap("map")
 	@SelectProvider(type = DiraySql.class, method = "getByUserId")
-	List<Diray> getByUserId(Integer i);
+	List<Diray> getByUserId(Integer userId);
 	
 	@ResultMap("map")
 	@SelectProvider(type = DiraySql.class, method = "getByWriteTime")
