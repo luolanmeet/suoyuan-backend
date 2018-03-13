@@ -11,7 +11,7 @@ import com.sy.service.IUserService;
  * @author cck
  */
 @RestController
-public class UserController {
+public class UserController extends BaseController {
 	
 	@Reference
     private IUserService userService;

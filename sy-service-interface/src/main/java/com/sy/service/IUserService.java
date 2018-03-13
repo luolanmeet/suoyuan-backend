@@ -1,6 +1,7 @@
 package com.sy.service;
 
 import com.cck.User;
+import com.object.exception.ErrorCodeException;
 
 /**
  *
@@ -8,7 +9,7 @@ import com.cck.User;
  */
 public interface IUserService {
 	
-	Integer login(String email, String pwd);
+	Integer login(String email, String pwd) throws ErrorCodeException;
 	Integer register(User user);
 	Integer set(User user);
 }

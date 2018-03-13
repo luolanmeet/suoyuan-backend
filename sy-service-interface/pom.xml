@@ -7,12 +7,17 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>sy-service-interface</artifactId>
-	
+
 	<dependencies>
+		<dependency>
+			<groupId>com.cck</groupId>
+			<artifactId>sy-object</artifactId>
+		</dependency>
+	
 		<dependency>
 			<groupId>com.cck</groupId>
 			<artifactId>sy-entity</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 </project>

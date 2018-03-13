@@ -18,7 +18,12 @@
 			<groupId>com.cck</groupId>
 			<artifactId>sy-dao</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>com.cck</groupId>
+			<artifactId>sy-object</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>io.dubbo.springboot</groupId>
 			<artifactId>spring-boot-starter-dubbo</artifactId>

@@ -13,13 +13,17 @@
 		<module>sy-service-interface</module>
 		<module>sy-web</module>
 	</modules>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.10.RELEASE</version>
 	</parent>
-
+	
+	<properties>
+		<project.version>0.0.1-SNAPSHOT</project.version>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -63,17 +67,22 @@
 			<dependency>
 				<groupId>com.cck</groupId>
 				<artifactId>sy-entity</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.cck</groupId>
+				<artifactId>sy-object</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.cck</groupId>
 				<artifactId>sy-dao</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.cck</groupId>
 				<artifactId>sy-service-interface</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
