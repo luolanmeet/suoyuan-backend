@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cck.User;
 import com.object.code.ErrorCode;
-import com.object.code.ResultCode;
 import com.object.exception.ErrorCodeException;
 import com.sy.mapper.UserMapper;
 import com.sy.service.IUserService;
@@ -26,7 +25,7 @@ public class UserService implements IUserService {
 	private UserMapper userMapper;
 	
 	@Override
-	public Integer login(String email, String pwd)  
+	public void login(String email, String pwd)  
 			throws ErrorCodeException {
 		
 		System.out.println(email + " " + pwd);
@@ -34,20 +33,21 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Integer register(String email, String pwd)  
+	public void register(String email, String pwd, String nickname)  
 			throws ErrorCodeException {
 		
 		log.info("req:register emial:{} pwd:{}");
 		
-		Boolean isCanRegister = 
-				ResultCode.EXIST == userMapper.isExistEmail(email);
-		
-		return null;
+		User user = User.builder()
+		        .email(email)
+		        .password(pwd)
+		        .nickname(nickname)
+		        .build();
+		userMapper.save(user);
 	}
 
 	@Override
-	public Integer set(User user) {
-		return null;
+	public void set(User user) {
 	}
 
 }

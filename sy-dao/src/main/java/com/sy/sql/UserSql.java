@@ -12,21 +12,26 @@ import com.cck.User;
 public class UserSql {
 	
 	final static String TABLE_NAME = "t_user";
+	final static String DUAL_TABLE = "dual";
 	
 	/**
 	 * 增加用户
 	 * @param user
 	 * @return
 	 */
-	public String add(User user) {
-		
-		return new SQL() {
-			{
-				INSERT_INTO(TABLE_NAME);
-				INTO_COLUMNS("email", "password", "nickname", "avator");
-				INTO_VALUES("#{email}", "#{password}", "#{nickname}", "#{avator}");
-			}
-		}.toString();
+	public String save(User user) {
+	    
+	    StringBuilder sql = new StringBuilder()
+	            .append("INSERT INTO ")
+	            .append(TABLE_NAME)
+	            .append(" (email, PASSWORD, nickname, avator) ")
+	            .append("SELECT #{email}, #{password}, #{nickname}, #{avator} FROM  ")
+	            .append(DUAL_TABLE)
+	            .append(" WHERE NOT EXISTS (SELECT 1 FROM ")
+	            .append(TABLE_NAME)
+	            .append(" WHERE email = #{email} LIMIT 1)");
+	        
+        return sql.toString();
 	}
 	
 	/**

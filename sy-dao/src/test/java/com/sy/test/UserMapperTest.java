@@ -33,7 +33,7 @@ public class UserMapperTest {
 			.avator("avator")
 			.build();
 		
-		userMapper.add(user);
+		System.out.println(userMapper.save(user));
 	}
 	
 	@Test

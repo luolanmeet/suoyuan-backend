@@ -18,8 +18,9 @@ public class UserController extends BaseController {
     private IUserService userService;
 	
 	@RequestMapping(value = "/register")
-	public BaseResp register(String email, String pwd) {
+	public BaseResp register(String email, String pwd, String nickname) {
 		
+	    userService.register(email, pwd, nickname);
 		return success();
 	}
 	

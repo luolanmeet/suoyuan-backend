@@ -35,7 +35,7 @@ public class DirayMapperTest {
 				.userId(1)
 				.content("hello world")
 				.build();
-		dirayMapper.add(diray);
+		dirayMapper.save(diray);
 	}
 
 	@Test

@@ -18,7 +18,7 @@ public class DiraySql {
 	 * @param diray
 	 * @return
 	 */
-	public String add(Diray diray) {
+	public String save(Diray diray) {
 
 		return new SQL() {
 			{

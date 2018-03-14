@@ -9,7 +9,7 @@ import com.object.exception.ErrorCodeException;
  */
 public interface IUserService {
 	
-	Integer login(String email, String pwd) throws ErrorCodeException;
-	Integer register(String email, String pwd) throws ErrorCodeException;
-	Integer set(User user);
+	void login(String email, String pwd) throws ErrorCodeException;
+	void register(String email, String pwd, String nickname) throws ErrorCodeException;
+	void set(User user);
 }

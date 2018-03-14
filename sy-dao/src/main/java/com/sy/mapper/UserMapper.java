@@ -16,8 +16,8 @@ import com.sy.sql.UserSql;
  */
 public interface UserMapper extends UserResultMap {
 	
-	@InsertProvider(type = UserSql.class, method = "add")
-	int add(User user);
+	@InsertProvider(type = UserSql.class, method = "save")
+	int save(User user);
 	
 	@UpdateProvider(type = UserSql.class, method = "update")
 	int update(User user);

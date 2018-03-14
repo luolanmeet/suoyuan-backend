@@ -10,6 +10,10 @@ import com.sy.controller.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ *
+ * @author cck
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler extends BaseController {
