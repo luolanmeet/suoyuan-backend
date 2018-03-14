@@ -25,11 +25,15 @@ public class UserService implements IUserService {
 	private UserMapper userMapper;
 	
 	@Override
-	public void login(String email, String pwd)  
+	public User login(String email, String pwd)  
 			throws ErrorCodeException {
 		
-		System.out.println(email + " " + pwd);
-		throw new ErrorCodeException(ErrorCode.INTERNAL_ERROR, "我故意的");
+		User user = userMapper.getByEmailAndPwd(email, pwd);
+		if (user == null) {
+			throw new ErrorCodeException(ErrorCode.USER_NO_EXITS, "账户或密码错误");
+		}
+		log.info("{}", user);
+		return user;
 	}
 
 	@Override
@@ -43,7 +47,11 @@ public class UserService implements IUserService {
 		        .password(pwd)
 		        .nickname(nickname)
 		        .build();
-		userMapper.save(user);
+		int save = userMapper.save(user);
+		
+		if(save == 0) {
+			throw new ErrorCodeException(ErrorCode.EMAIL_HAS_REGISTER, "邮箱已被注册");
+		}
 	}
 
 	@Override

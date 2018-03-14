@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.cck.User;
 import com.object.resp.BaseResp;
 import com.sy.service.IUserService;
 
@@ -22,6 +23,13 @@ public class UserController extends BaseController {
 		
 	    userService.register(email, pwd, nickname);
 		return success();
+	}
+	
+	@RequestMapping(value = "/login")
+	public BaseResp login(String email, String pwd) {
+		
+		User user = userService.login(email, pwd);
+		return success(user);
 	}
 	
 }

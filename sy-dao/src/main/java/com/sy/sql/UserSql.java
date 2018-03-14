@@ -25,7 +25,7 @@ public class UserSql {
 	            .append("INSERT INTO ")
 	            .append(TABLE_NAME)
 	            .append(" (email, PASSWORD, nickname, avator) ")
-	            .append("SELECT #{email}, #{password}, #{nickname}, #{avator} FROM  ")
+	            .append("SELECT #{email}, #{password}, #{nickname}, #{avator} FROM ")
 	            .append(DUAL_TABLE)
 	            .append(" WHERE NOT EXISTS (SELECT 1 FROM ")
 	            .append(TABLE_NAME)
