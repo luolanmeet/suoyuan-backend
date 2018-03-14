@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.object.resp.BaseResp;
 import com.sy.service.IUserService;
 
 /**
@@ -16,10 +17,10 @@ public class UserController extends BaseController {
 	@Reference
     private IUserService userService;
 	
-	@RequestMapping(value = "/")
-	public String register() {
-		userService.login("hello", "dubbo");
-		return "hello world";
+	@RequestMapping(value = "/register")
+	public BaseResp register(String email, String pwd) {
+		
+		return success();
 	}
 	
 }

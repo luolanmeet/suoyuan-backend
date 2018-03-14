@@ -10,6 +10,6 @@ import com.object.exception.ErrorCodeException;
 public interface IUserService {
 	
 	Integer login(String email, String pwd) throws ErrorCodeException;
-	Integer register(User user);
+	Integer register(String email, String pwd) throws ErrorCodeException;
 	Integer set(User user);
 }

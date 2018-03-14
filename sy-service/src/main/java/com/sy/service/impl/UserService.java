@@ -6,14 +6,18 @@ import org.springframework.stereotype.Component;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cck.User;
 import com.object.code.ErrorCode;
+import com.object.code.ResultCode;
 import com.object.exception.ErrorCodeException;
 import com.sy.mapper.UserMapper;
 import com.sy.service.IUserService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author cck
  */
+@Slf4j
 @Service
 @Component
 public class UserService implements IUserService {
@@ -22,18 +26,22 @@ public class UserService implements IUserService {
 	private UserMapper userMapper;
 	
 	@Override
-	public Integer login(String email, String pwd)  throws ErrorCodeException {
-		System.out.println(email + " " + pwd);
+	public Integer login(String email, String pwd)  
+			throws ErrorCodeException {
 		
-		if (1 == 1) {
-			throw new ErrorCodeException(ErrorCode.INTERNAL_ERROR, "我故意的");
-		}
-		System.out.println(userMapper.isExistEmail(email));
-		return null;
+		System.out.println(email + " " + pwd);
+		throw new ErrorCodeException(ErrorCode.INTERNAL_ERROR, "我故意的");
 	}
 
 	@Override
-	public Integer register(User user) {
+	public Integer register(String email, String pwd)  
+			throws ErrorCodeException {
+		
+		log.info("req:register emial:{} pwd:{}");
+		
+		Boolean isCanRegister = 
+				ResultCode.EXIST == userMapper.isExistEmail(email);
+		
 		return null;
 	}
 
