@@ -32,4 +32,11 @@ public class UserController extends BaseController {
 		return success(user);
 	}
 	
+	@RequestMapping(value = "/update")
+	public BaseResp update(User user) {
+		
+		userService.update(user);
+		return success(user);
+	}
+	
 }

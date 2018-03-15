@@ -55,7 +55,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void set(User user) {
+	public void update(User user) {
 	}
 
 }
