@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+	<contextName>sy.web</contextName>
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date{dd'T'HH:mm:ss} %.-1level[%25logger{0}] - %message%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="sy" level="DEBUG" />
+
+	<root level="DEBUG">
+		<appender-ref ref="stdout" />
+	</root>
+	
+</configuration>
