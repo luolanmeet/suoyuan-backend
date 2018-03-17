@@ -6,14 +6,11 @@
 
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%date{dd'T'HH:mm:ss} %.-1level[%25logger{0}] - %message%n
-			</pattern>
+			<pattern>%date{HH:mm:ss} %.-1level[%20logger{0}] - &lt;%message&gt;%n</pattern>
 		</encoder>
 	</appender>
 
-	<logger name="sy" level="DEBUG" />
-
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="stdout" />
 	</root>
 	

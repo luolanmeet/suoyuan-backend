@@ -8,10 +8,13 @@ import com.cck.User;
 import com.object.resp.BaseResp;
 import com.sy.service.IUserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author cck
  */
+@Slf4j
 @RestController
 public class UserController extends BaseController {
 	
@@ -29,6 +32,7 @@ public class UserController extends BaseController {
 	public BaseResp login(String email, String pwd) {
 		
 		User user = userService.login(email, pwd);
+		log.info("{}", user);
 		return success(user);
 	}
 	
