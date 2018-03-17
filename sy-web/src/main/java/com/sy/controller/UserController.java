@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cck.User;
 import com.object.resp.BaseResp;
+import com.object.resp.LoginResp;
+import com.sy.jwt.JwtUtil;
 import com.sy.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +34,15 @@ public class UserController extends BaseController {
 	public BaseResp login(String email, String pwd) {
 		
 		User user = userService.login(email, pwd);
-		log.info("{}", user);
-		return success(user);
+		String token = JwtUtil.createToken(user.getId());
+		
+		LoginResp resp = LoginResp.builder()
+			.token(token)
+			.user(user)
+			.build();
+		
+		log.info("user[{}] login success", user.getId());
+		return success(resp);
 	}
 	
 	@RequestMapping(value = "/update")

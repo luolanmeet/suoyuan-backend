@@ -15,6 +15,9 @@ public interface ErrorCode {
 	/** 邮箱已被注册 */
 	int EMAIL_HAS_REGISTER = 1000;
 	
+	/** 用户未登录 */
+	int USER_NO_LOGIN = 1002;	
+	
 	/** 用户不存在 */
-	int USER_NO_EXITS = 1002;	
+	int USER_NO_EXITS = 1004;	
 }
