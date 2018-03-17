@@ -20,4 +20,7 @@ public interface ErrorCode {
 	
 	/** 用户不存在 */
 	int USER_NO_EXITS = 1004;	
+	
+	/** token校验不通过 */
+	int ERROR_TOKEN = 1006;	
 }

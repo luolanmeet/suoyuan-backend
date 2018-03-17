@@ -25,6 +25,15 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 	
 	private final static Integer ZERO = 0;
 	
+	private final static String TOKEN = "token";
+	private final static String USER_ID = "userId";
+	
+	private final static ErrorCodeException USER_NO_LOGIN 
+		= new ErrorCodeException(ErrorCode.USER_NO_LOGIN, "用户未登录");
+	
+	private final static ErrorCodeException ERROR_TOKEN 
+		= new ErrorCodeException(ErrorCode.ERROR_TOKEN, "token校验未通过");
+	
 	private final static Map<String,Integer> ignorePath = new HashMap<String, Integer>() {
 		/**  */
 		private static final long serialVersionUID = 1L;
@@ -34,9 +43,6 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 			put("/register", ZERO);
 		}
 	};
-	
-	private final static ErrorCodeException USER_NO_LOGIN 
-		= new ErrorCodeException(ErrorCode.USER_NO_LOGIN, "用户未登录");
 	
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler)
@@ -52,7 +58,8 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
-		String token = request.getHeader("token");
+		String token = request.getHeader(TOKEN);
+		String userId = request.getParameter(USER_ID);
 		
 		if (token == null) {
 			throw USER_NO_LOGIN;
@@ -62,11 +69,16 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 		
 		Optional<DecodedJWT> checkToken = JwtUtil.checkToken(token);
 		
-		if (checkToken.isPresent()) {
+		if (!checkToken.isPresent() && userId != null) {
 			
-			checkToken.get();
+			String userIdInToken = String.valueOf(checkToken.get().getClaim(USER_ID).asInt());
+			
+			if (!userId.equals(userIdInToken)) {
+				throw ERROR_TOKEN;
+			}
 		} else {
-			throw new ErrorCodeException(ErrorCode.USER_NO_EXITS, "账户或密码错误");
+			
+			throw ERROR_TOKEN;
 		}
 		
 		return true;

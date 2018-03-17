@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cck.Diray;
+import com.object.req.AddDirayReq;
 import com.sy.mapper.DirayMapper;
 import com.sy.service.IDirayService;
 
@@ -25,10 +26,10 @@ public class DirayService implements IDirayService {
 	private DirayMapper dirayMapper;
 	
 	@Override
-	public int add(Diray diray) {
+	public void add(AddDirayReq req) {
 		
-		dirayMapper.save(diray);
-		return 0;
+		dirayMapper.save(req.getUserId(), req.getContent());
+		log.info("save diray success");
 	}
 
 	@Override

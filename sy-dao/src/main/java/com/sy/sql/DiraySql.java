@@ -18,7 +18,8 @@ public class DiraySql {
 	 * @param diray
 	 * @return
 	 */
-	public String save(Diray diray) {
+	public String save(@Param("userId")Integer userId,
+			@Param("content")String content) {
 
 		return new SQL() {
 			{
@@ -50,7 +51,8 @@ public class DiraySql {
 	 * @param dateTime
 	 * @return
 	 */
-	public String getByWriteTime(@Param("userId")Integer userId, @Param("dateTime")String dateTime) {
+	public String getByWriteTime(@Param("userId")Integer userId, 
+			@Param("dateTime")String dateTime) {
 		
 		return new SQL() {
 			{

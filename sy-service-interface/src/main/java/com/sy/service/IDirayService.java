@@ -3,6 +3,7 @@ package com.sy.service;
 import java.util.List;
 
 import com.cck.Diray;
+import com.object.req.AddDirayReq;
 
 /**
  *
@@ -10,7 +11,7 @@ import com.cck.Diray;
  */
 public interface IDirayService {
 
-	int add(Diray diray);
+	void add(AddDirayReq req);
 	List<Diray> getByUserId(Integer userId);
 	List<Diray> getByWriteTime(Integer userId, String dateTime);
 }

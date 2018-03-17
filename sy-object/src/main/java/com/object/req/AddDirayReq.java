@@ -1,4 +1,4 @@
-package com.object.resp;
+package com.object.req;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,9 +15,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseResp {
+public class AddDirayReq {
 	
-	private int code;
-	private String cause;
-	private Object data;
+	private Integer userId;
+	private String content;
 }

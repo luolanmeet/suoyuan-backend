@@ -18,7 +18,7 @@ import com.sy.sql.DiraySql;
 public interface DirayMapper extends DirayResultMap {
 	
 	@InsertProvider(type = DiraySql.class, method = "save")
-	int save(Diray diray);
+	int save(@Param("userId")Integer userId, @Param("content")String content);
 	
 	@ResultMap("map")
 	@SelectProvider(type = DiraySql.class, method = "getByUserId")

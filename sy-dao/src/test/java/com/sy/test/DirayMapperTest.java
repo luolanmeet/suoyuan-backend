@@ -30,12 +30,8 @@ public class DirayMapperTest {
     
 	@Test
 	public void testAdd() {
-
-		Diray diray = Diray.builder()
-				.userId(1)
-				.content("hello world")
-				.build();
-		dirayMapper.save(diray);
+		
+		dirayMapper.save(1, "hello world");
 	}
 
 	@Test

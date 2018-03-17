@@ -18,7 +18,7 @@ public class DirayController extends BaseController {
     private IDirayService dirayService;
 	
 	@RequestMapping(value = "/add")
-	public BaseResp register(String email, String pwd, String nickname) {
+	public BaseResp add(Integer userId, String context) {
 		
 		return success();
 	}
