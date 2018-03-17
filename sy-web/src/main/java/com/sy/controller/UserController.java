@@ -1,5 +1,6 @@
 package com.sy.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,12 @@ public class UserController extends BaseController {
 	
 	@Reference
     private IUserService userService;
+	
+	@RequestMapping(value = "/")
+	public BaseResp test() {
+		
+		return success("hello world");
+	}
 	
 	@RequestMapping(value = "/register")
 	public BaseResp register(String email, String pwd, String nickname) {

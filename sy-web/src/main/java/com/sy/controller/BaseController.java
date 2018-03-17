@@ -1,5 +1,7 @@
 package com.sy.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.object.code.ErrorCode;
 import com.object.resp.BaseResp;
 
@@ -7,6 +9,7 @@ import com.object.resp.BaseResp;
  * 
  * @author cck
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class BaseController {
 	
 	public static final BaseResp OK = BaseResp.builder().code(ErrorCode.OK).build();
