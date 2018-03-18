@@ -28,6 +28,7 @@ public class User implements Serializable {
 	private String password;
 	private String nickname;
 	private String avator;
+	private String signature;
 	private Integer isOpen;            // 0:不公开    1:公开
 	private Integer dirayCount;
 	

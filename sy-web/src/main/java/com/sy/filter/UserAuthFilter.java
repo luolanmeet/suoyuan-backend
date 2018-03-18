@@ -39,7 +39,6 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 		private static final long serialVersionUID = 1L;
 
 		{
-			put("/", ZERO);
 			put("/login", ZERO);
 			put("/register", ZERO);
 		}

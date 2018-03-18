@@ -18,6 +18,7 @@ public interface UserResultMap {
 		@Result(property = "password",   column = "password"), 
 		@Result(property = "nickname",   column = "nickname"), 
 		@Result(property = "avator",     column = "avator"), 
+		@Result(property = "signature",  column = "signature"), 
 		@Result(property = "isOpen",     column = "is_open"), 
 		@Result(property = "dirayCount", column = "diray_count") 
 	})

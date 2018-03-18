@@ -104,6 +104,9 @@ public class UserSql {
 				if(user.getAvator() != null && !("").equals(user.getAvator())) {
 					SET("avator = #{avator}");
 				}
+				if(user.getSignature() != null && !("").equals(user.getSignature())) {
+					SET("getSignature = #{getSignature}");
+				}
 				if(user.getIsOpen() != null) {
 					SET("is_open = #{isOpen}");
 				}

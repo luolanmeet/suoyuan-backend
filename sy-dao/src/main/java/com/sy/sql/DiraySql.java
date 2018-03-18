@@ -77,4 +77,8 @@ public class DiraySql {
 				.toString();
 	}
 	
+	public void getLastDiray(@Param("userId")Integer userId) {
+		
+	}
+	
 }
