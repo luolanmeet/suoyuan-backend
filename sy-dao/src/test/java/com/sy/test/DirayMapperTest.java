@@ -31,7 +31,9 @@ public class DirayMapperTest {
 	@Test
 	public void testAdd() {
 		
-		dirayMapper.save(1, "hello world");
+		for (int i = 0; i < 5; i++) {
+			dirayMapper.save(6, "圣人之道，吾性自足！");
+		}
 	}
 
 	@Test

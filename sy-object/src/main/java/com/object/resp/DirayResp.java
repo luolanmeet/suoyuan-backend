@@ -15,8 +15,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResp {
+public class DirayResp {
 	
-	private String token;
-	private Integer userId;
+	String time;
+	String content;
 }

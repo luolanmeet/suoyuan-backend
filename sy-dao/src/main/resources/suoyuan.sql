@@ -37,9 +37,11 @@ CREATE TABLE `t_user` (
   `email` varchar(30) NOT NULL COMMENT '邮箱',
   `password` varchar(20) NOT NULL COMMENT '密码',
   `nickname` varchar(20) NOT NULL COMMENT '昵称',
-  `avator` varchar(30) DEFAULT NULL COMMENT '用户头像',
+  `avator` varchar(250) DEFAULT NULL COMMENT '用户头像',
+  `signature` varchar(250) DEFAULT NULL COMMENT '个性签名',
   `is_open` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否公开日记 0:不公开 1:公开',
   `diray_count` int(10) NOT NULL DEFAULT '0' COMMENT '用户日记数',
+  `last_diray_date` varchar(10) DEFAULT '0000-00-00' COMMENT '最后一次写日记的日期',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

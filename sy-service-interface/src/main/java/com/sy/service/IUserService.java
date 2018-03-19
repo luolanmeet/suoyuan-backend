@@ -12,4 +12,5 @@ public interface IUserService {
 	User login(String email, String pwd) throws ErrorCodeException;
 	void register(String email, String pwd, String nickname) throws ErrorCodeException;
 	void update(User user);
+	User getById(Integer userId);
 }

@@ -1,13 +1,12 @@
-package com.cck;
+package com.object.resp;
 
-import java.io.Serializable;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  * 
@@ -16,21 +15,16 @@ import lombok.ToString;
 @Getter
 @Setter
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class UserMsgAndDiray {
 	
 	private Integer id;
 	private String email;
-	private String password;
 	private String nickname;
 	private String avator;
 	private String signature;
-	private Integer isOpen;            // 0:不公开    1:公开
 	private Integer dirayCount;
 	private String lastDirayDate;
-	
+	private List<DirayResp> dirays;
 }

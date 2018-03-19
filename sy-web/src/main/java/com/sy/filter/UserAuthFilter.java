@@ -69,7 +69,7 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 		
 		Optional<DecodedJWT> checkToken = JwtUtil.checkToken(token);
 		
-		if (!checkToken.isPresent() && userId != null) {
+		if (checkToken.isPresent() && userId != null) {
 			
 			String userIdInToken = String.valueOf(checkToken.get().getClaim(USER_ID).asInt());
 			

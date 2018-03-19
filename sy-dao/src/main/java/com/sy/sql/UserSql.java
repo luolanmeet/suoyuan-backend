@@ -113,6 +113,9 @@ public class UserSql {
 				if(user.getDirayCount() != null) {
 					SET("diray_count = #{dirayCount}");
 				}
+				if(user.getLastDirayDate() != null) {
+					SET("last_diray_date = #{lastDirayDate}");
+				}
 				WHERE("id = #{id}");
 			}
 		}.toString();

@@ -58,4 +58,10 @@ public class UserService implements IUserService {
 	public void update(User user) {
 	}
 
+	@Override
+	public User getById(Integer userId) {
+		
+		return userMapper.getById(userId);
+	}
+
 }
