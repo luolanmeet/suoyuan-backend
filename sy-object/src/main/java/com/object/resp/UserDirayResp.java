@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 登录的响应
+ * 首页 用户以往的日记
  * @author cck
  */
 @Getter
@@ -15,8 +15,10 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResp {
+public class UserDirayResp {
 	
-	private String token;
-	private Integer userId;
+	String month;
+	String day;
+	String time;
+	String content;
 }

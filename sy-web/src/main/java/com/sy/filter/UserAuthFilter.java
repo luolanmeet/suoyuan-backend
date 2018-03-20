@@ -58,7 +58,8 @@ public class UserAuthFilter extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
-		String token = request.getHeader(TOKEN);
+//		String token = request.getHeader(TOKEN);
+		String token = request.getParameter(TOKEN);
 		String userId = request.getParameter(USER_ID);
 		
 		if (token == null) {

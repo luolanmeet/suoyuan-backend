@@ -3,13 +3,17 @@ package com.sy.util;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
 import com.cck.Diray;
 import com.cck.User;
 import com.object.resp.DirayResp;
+import com.object.resp.UserAllDirayResp;
+import com.object.resp.UserDirayResp;
 import com.object.resp.UserMsgAndDiray;
 
 /**
@@ -24,6 +28,15 @@ public class RespUtil {
 	
 	public final static ThreadLocal<SimpleDateFormat> TIME_FORMATTER
 		= ThreadLocal.withInitial(() -> new SimpleDateFormat("HH:mm"));
+	
+	public final static ThreadLocal<SimpleDateFormat> YEAR_FORMATTER
+		= ThreadLocal.withInitial(() -> new SimpleDateFormat("- yyyy年 -"));
+	
+	public final static ThreadLocal<SimpleDateFormat> MONTH_FORMATTER
+		= ThreadLocal.withInitial(() -> new SimpleDateFormat("MM月"));
+	
+	public final static ThreadLocal<SimpleDateFormat> DAY_FORMATTER
+		= ThreadLocal.withInitial(() -> new SimpleDateFormat("dd"));
 	
 	public UserMsgAndDiray getUserIndexResp(User user, List<Diray> dirays) {
 		
@@ -55,6 +68,36 @@ public class RespUtil {
 				.build();
 		
 		return resp;
+	}
+	
+	public List<UserAllDirayResp> getUserDiraysResq(List<Diray> dirays) {
+		
+		Map<String, UserAllDirayResp> map = new LinkedHashMap<>();
+		for (Diray diray : dirays) {
+			Date date = diray.getWriteTime();
+			String year    = YEAR_FORMATTER.get().format(date);
+			String month   = MONTH_FORMATTER.get().format(date);
+			String day     = DAY_FORMATTER.get().format(date);
+			String time    = TIME_FORMATTER.get().format(date);
+			String content = diray.getContent();
+			UserDirayResp userDirayResp = UserDirayResp.builder()
+					.month(month)
+					.day(day)
+					.time(time)
+					.content(content)
+					.build();
+			
+			if (!map.containsKey(year)) {
+				UserAllDirayResp userAllDirayResp = UserAllDirayResp.builder()
+						.year(year)
+						.userDirays(new ArrayList<>())
+						.build();
+				map.put(year, userAllDirayResp);
+			}
+			map.get(year).getUserDirays().add(userDirayResp);
+		}
+		
+		return new ArrayList<UserAllDirayResp>(map.values());
 	}
 	
 }

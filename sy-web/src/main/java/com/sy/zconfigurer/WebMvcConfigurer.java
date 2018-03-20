@@ -33,7 +33,8 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 		System.out.println("\n\n addCorsMappings \n\n");
 		 registry.addMapping("/**/*")
 		 .allowedHeaders("X-Requested-With", "Content-Type", "Accept",
-		 "token")
+			 "token","Access-Control-Request-Headers",
+			 "Access-Control-Request-Method")
 		 .allowedMethods("GET", "POST", "PUT", "OPTIONS")
 		 .allowedOrigins("*")
 		 .maxAge(Integer.MAX_VALUE);

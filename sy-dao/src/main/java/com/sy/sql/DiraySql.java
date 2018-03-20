@@ -40,6 +40,7 @@ public class DiraySql {
 				SELECT("*");
 				FROM(TABLE_NAME);
 				WHERE("user_id = #{userId}");
+				ORDER_BY("write_time DESC");
 			}
 		}.toString();
 	}

@@ -1,5 +1,7 @@
 package com.object.resp;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 登录的响应
+ * 首页 用户所有日志
  * @author cck
  */
 @Getter
@@ -15,8 +17,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResp {
+public class UserAllDirayResp {
 	
-	private String token;
-	private Integer userId;
+	String year;
+	List<UserDirayResp> userDirays;
 }

@@ -39,7 +39,7 @@ public class DirayMapperTest {
 	@Test
 	public void testGetByUserId() {
 		
-		List<Diray> list = dirayMapper.getByUserId(1);
+		List<Diray> list = dirayMapper.getByUserId(6);
 		System.out.println(list);
 		Date date = list.get(0).getWriteTime();
 		
