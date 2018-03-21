@@ -22,6 +22,9 @@ public interface UserMapper extends UserResultMap {
 	@UpdateProvider(type = UserSql.class, method = "update")
 	int update(User user);
 	
+	@UpdateProvider(type = UserSql.class, method = "updateLastDirayDate")
+	int updateLastDirayDate(@Param("id")Integer id, @Param("date")String date);
+	
 	@ResultMap("map")
 	@SelectProvider(type = UserSql.class, method = "getById")
 	User getById(Integer id);

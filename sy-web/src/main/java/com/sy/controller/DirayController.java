@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.object.req.AddDirayReq;
 import com.object.resp.BaseResp;
 import com.sy.service.IDirayService;
 import com.sy.util.RespUtil;
@@ -22,9 +23,14 @@ public class DirayController extends BaseController {
 	@Autowired
 	private RespUtil respUtil;
 	
-	@RequestMapping(value = "/add")
-	public BaseResp add(Integer userId, String context) {
+	@RequestMapping(value = "/writeDiray")
+	public BaseResp add(Integer userId, String content) {
 		
+		AddDirayReq addDirayReq = AddDirayReq.builder()
+				.userId(userId)
+				.content(content)
+				.build();
+		dirayService.add(addDirayReq);
 		return success();
 	}
 	

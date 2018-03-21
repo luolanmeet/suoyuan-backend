@@ -121,4 +121,14 @@ public class UserSql {
 		}.toString();
 	}
 	
+	public String updateLastDirayDate(@Param("id")Integer userId, @Param("date")String date) {
+		return new SQL() {
+			{
+				UPDATE(TABLE_NAME);
+				SET("last_diray_date = #{date}");
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
+	
 }
