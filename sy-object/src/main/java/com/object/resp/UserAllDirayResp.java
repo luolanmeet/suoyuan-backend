@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserAllDirayResp {
-	
-	String year;
-	List<UserDirayResp> userDirays;
+
+    String year;
+    List<UserDirayResp> userDirays;
 }

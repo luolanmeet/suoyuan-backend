@@ -17,42 +17,42 @@ import com.sy.service.IDirayService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
+ *
  * @author cck
  */
 @Slf4j
 @Service
 @Component
 public class DirayService implements IDirayService {
-	
-	@Autowired
-	private DirayMapper dirayMapper;
-	
-	@Autowired
-	private UserMapper userMapper;
-	
-	public final static ThreadLocal<SimpleDateFormat> FORMATTER
-		= ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
-	
-	@Override
-	public void add(AddDirayReq req) {
-		
-		dirayMapper.save(req.getUserId(), req.getContent());
-		userMapper.updateLastDirayDate(req.getUserId(), 
-				FORMATTER.get().format(new Date()));
-		log.info("save diray success");
-	}
 
-	@Override
-	public List<Diray> getByUserId(Integer userId) {
-		
-		return dirayMapper.getByUserId(userId);
-	}
+    @Autowired
+    private DirayMapper dirayMapper;
 
-	@Override
-	public List<Diray> getByWriteTime(Integer userId, String dateTime) {
-		
-		return dirayMapper.getByWriteTime(userId, dateTime);
-	} 
-	
+    @Autowired
+    private UserMapper userMapper;
+
+    public final static ThreadLocal<SimpleDateFormat> FORMATTER
+        = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
+
+    @Override
+    public void add(AddDirayReq req) {
+
+        dirayMapper.save(req.getUserId(), req.getContent());
+        userMapper.updateLastDirayDate(req.getUserId(),
+                FORMATTER.get().format(new Date()));
+        log.info("save diray success");
+    }
+
+    @Override
+    public List<Diray> getByUserId(Integer userId) {
+
+        return dirayMapper.getByUserId(userId);
+    }
+
+    @Override
+    public List<Diray> getByWriteTime(Integer userId, String dateTime) {
+
+        return dirayMapper.getByWriteTime(userId, dateTime);
+    }
+
 }

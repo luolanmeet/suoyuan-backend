@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 
+ *
  * @author cck
  */
 @Getter
@@ -18,13 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserMsgAndDiray {
-	
-	private Integer id;
-	private String email;
-	private String nickname;
-	private String avator;
-	private String signature;
-	private Integer dirayCount;
-	private String lastDirayDate;
-	private List<DirayResp> dirays;
+
+    private Integer id;
+    private String email;
+    private String nickname;
+    private String avator;
+    private String signature;
+    private Integer dirayCount;
+    private String lastDirayDate;
+    private List<DirayResp> dirays;
 }

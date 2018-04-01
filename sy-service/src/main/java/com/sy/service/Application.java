@@ -8,24 +8,24 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 
 /**
- * 
+ *
  * @author cck
  */
 @MapperScan(basePackages = { "com.sy.mapper" })
 @SpringBootApplication(scanBasePackageClasses = Application.class)
 public class Application {
 
-	public static void main(String[] args) throws InterruptedException {
-		
-		new SpringApplicationBuilder()
-				.sources(Application.class)
-				.web(false).run(args);
-	}
+    public static void main(String[] args) throws InterruptedException {
 
-	@Bean
-	public CountDownLatch closeLatch() {
-		
-		return new CountDownLatch(1);
-	}
+        new SpringApplicationBuilder()
+                .sources(Application.class)
+                .web(false).run(args);
+    }
+
+    @Bean
+    public CountDownLatch closeLatch() {
+
+        return new CountDownLatch(1);
+    }
 
 }

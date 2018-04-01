@@ -31,94 +31,94 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserController extends BaseController {
 
-	@Reference
+    @Reference
     private IUserService userService;
 
-	@Reference
-	private IDirayService dirayService;
+    @Reference
+    private IDirayService dirayService;
 
-	@Autowired
-	private RespUtil util;
+    @Autowired
+    private RespUtil util;
 
-	@Autowired
-	private ImageUtil imageUtil;
+    @Autowired
+    private ImageUtil imageUtil;
 
-	@RequestMapping(value = "/register")
-	public BaseResp register(String email, String pwd, String nickname) {
+    @RequestMapping(value = "/register")
+    public BaseResp register(String email, String pwd, String nickname) {
 
-		userService.register(email, pwd, nickname);
-		return success();
-	}
+        userService.register(email, pwd, nickname);
+        return success();
+    }
 
-	@RequestMapping(value = "/login")
-	public BaseResp login(String email, String pwd) {
+    @RequestMapping(value = "/login")
+    public BaseResp login(String email, String pwd) {
 
-		User user = userService.login(email, pwd);
-		String token = JwtUtil.createToken(user.getId());
+        User user = userService.login(email, pwd);
+        String token = JwtUtil.createToken(user.getId());
 
-		LoginResp resp = LoginResp.builder()
-			.token(token)
-			.userId(user.getId())
-			.build();
+        LoginResp resp = LoginResp.builder()
+            .token(token)
+            .userId(user.getId())
+            .build();
 
-		log.info("user[{}] login success", user.getId());
-		return success(resp);
-	}
+        log.info("user[{}] login success", user.getId());
+        return success(resp);
+    }
 
-	@RequestMapping(value = "/myIndex")
-	public BaseResp userIndex(Integer writerId) {
+    @RequestMapping(value = "/myIndex")
+    public BaseResp userIndex(Integer writerId) {
 
-		User user = userService.getById(writerId);
-		List<Diray> dirays =
-				dirayService.getByWriteTime(writerId, user.getLastDirayDate());
+        User user = userService.getById(writerId);
+        List<Diray> dirays =
+                dirayService.getByWriteTime(writerId, user.getLastDirayDate());
 
-		UserMsgAndDiray resp = util.getUserIndexResp(user, dirays);
-		return success(resp);
-	}
+        UserMsgAndDiray resp = util.getUserIndexResp(user, dirays);
+        return success(resp);
+    }
 
-	@RequestMapping(value = "/update")
-	public BaseResp update(String nickname, Integer userId,
-			String pwd, Integer isOpen, String signature,
-			String avator) {
+    @RequestMapping(value = "/update")
+    public BaseResp update(String nickname, Integer userId,
+            String pwd, Integer isOpen, String signature,
+            String avator) {
 
-		User user = User.builder()
-			.id(userId)
-			.nickname(nickname)
-			.signature(signature)
-			.password(pwd)
-			.avator(avator)
-			.isOpen(isOpen)
-			.build();
-		userService.update(user);
-		return success();
-	}
+        User user = User.builder()
+            .id(userId)
+            .nickname(nickname)
+            .signature(signature)
+            .password(pwd)
+            .avator(avator)
+            .isOpen(isOpen)
+            .build();
+        userService.update(user);
+        return success();
+    }
 
-	@RequestMapping(value = "/userMsg")
-	public BaseResp userMsg(Integer userId) {
+    @RequestMapping(value = "/userMsg")
+    public BaseResp userMsg(Integer userId) {
 
-		User user = userService.getById(userId);
-		return success(user);
-	}
+        User user = userService.getById(userId);
+        return success(user);
+    }
 
-	@RequestMapping(value = "/uploadPic")
-	public BaseResp uploadPic(MultipartFile file) {
+    @RequestMapping(value = "/uploadPic")
+    public BaseResp uploadPic(MultipartFile file) {
 
-		String path = imageUtil.save(file);
-		return success(path);
-	}
+        String path = imageUtil.save(file);
+        return success(path);
+    }
 
-	@RequestMapping(value = "/randomPic")
-	public BaseResp getRandomPic() {
+    @RequestMapping(value = "/randomPic")
+    public BaseResp getRandomPic() {
 
-		return success(userService.getRandomPic());
-	}
+        return success(userService.getRandomPic());
+    }
 
-	@RequestMapping(value = "/getOpenDirayUser")
-	public BaseResp getOpenDirayUser() {
+    @RequestMapping(value = "/getOpenDirayUser")
+    public BaseResp getOpenDirayUser() {
 
-		List<OpenDirayUser> openDirayUsers
-			= userService.getOpenDirayUser();
-		return success(Lists.partition(openDirayUsers, 5));
-	}
+        List<OpenDirayUser> openDirayUsers
+            = userService.getOpenDirayUser();
+        return success(Lists.partition(openDirayUsers, 5));
+    }
 
 }

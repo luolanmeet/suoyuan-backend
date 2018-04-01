@@ -12,47 +12,47 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 /**
- * 
+ *
  * @author cck
  */
 public class JwtUtil {
 
-	private final static String SECRET = "SUOYUAN";
-	private static Algorithm algorithm;
-	private static JWTVerifier verification;
-	
-	static {
-		try {
-			algorithm = Algorithm.HMAC256(SECRET);
-			verification = JWT.require(algorithm).build();
-		} catch (IllegalArgumentException | UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-	}
+    private final static String SECRET = "SUOYUAN";
+    private static Algorithm algorithm;
+    private static JWTVerifier verification;
 
-	public static String createToken(Integer userId) {
+    static {
+        try {
+            algorithm = Algorithm.HMAC256(SECRET);
+            verification = JWT.require(algorithm).build();
+        } catch (IllegalArgumentException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 
-		String token = "";
+    public static String createToken(Integer userId) {
 
-		Map<String, Object> header = new HashMap<>();
-		header.put("typ", "jwt");
-		header.put("alg", "HS256");
+        String token = "";
 
-		token = JWT.create().withHeader(header) // header
-				.withClaim("userId", userId)    // payload
-				.sign(algorithm);               // sign
+        Map<String, Object> header = new HashMap<>();
+        header.put("typ", "jwt");
+        header.put("alg", "HS256");
 
-		return token;
-	}
+        token = JWT.create().withHeader(header) // header
+                .withClaim("userId", userId)    // payload
+                .sign(algorithm);               // sign
 
-	public static Optional<DecodedJWT> checkToken(String token) {
-		
-		try {
-			return Optional.of(verification.verify(token));
-		} catch (JWTVerificationException e) {
-		}
-		
-		return Optional.empty();
-	}
+        return token;
+    }
+
+    public static Optional<DecodedJWT> checkToken(String token) {
+
+        try {
+            return Optional.of(verification.verify(token));
+        } catch (JWTVerificationException e) {
+        }
+
+        return Optional.empty();
+    }
 
 }

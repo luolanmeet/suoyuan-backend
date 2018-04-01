@@ -24,66 +24,66 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class UserService implements IUserService {
 
-	@Autowired
-	private UserMapper userMapper;
+    @Autowired
+    private UserMapper userMapper;
 
-	@Override
-	public User login(String email, String pwd)
-			throws ErrorCodeException {
+    @Override
+    public User login(String email, String pwd)
+            throws ErrorCodeException {
 
-		User user = userMapper.getByEmailAndPwd(email, pwd);
-		if (user == null) {
-			throw new ErrorCodeException(ErrorCode.USER_NO_EXITS, "账户或密码错误");
-		}
-		log.info("{}", user);
-		return user;
-	}
+        User user = userMapper.getByEmailAndPwd(email, pwd);
+        if (user == null) {
+            throw new ErrorCodeException(ErrorCode.USER_NO_EXITS, "账户或密码错误");
+        }
+        log.info("{}", user);
+        return user;
+    }
 
-	@Override
-	public void register(String email, String pwd, String nickname)
-			throws ErrorCodeException {
+    @Override
+    public void register(String email, String pwd, String nickname)
+            throws ErrorCodeException {
 
-		log.info("req:register emial:{} pwd:{}");
+        log.info("req:register emial:{} pwd:{}");
 
-		User user = User.builder()
-		        .email(email)
-		        .password(pwd)
-		        .nickname(nickname)
-		        .build();
-		int save = userMapper.save(user);
+        User user = User.builder()
+                .email(email)
+                .password(pwd)
+                .nickname(nickname)
+                .build();
+        int save = userMapper.save(user);
 
-		if(save == 0) {
-			throw new ErrorCodeException(ErrorCode.EMAIL_HAS_REGISTER, "邮箱已被注册");
-		}
-	}
+        if(save == 0) {
+            throw new ErrorCodeException(ErrorCode.EMAIL_HAS_REGISTER, "邮箱已被注册");
+        }
+    }
 
-	@Override
-	public void update(User user) {
+    @Override
+    public void update(User user) {
 
-		userMapper.update(user);
-	}
+        userMapper.update(user);
+    }
 
-	@Override
-	public User getById(Integer userId) {
+    @Override
+    public User getById(Integer userId) {
 
-		return userMapper.getById(userId);
-	}
+        return userMapper.getById(userId);
+    }
 
-	@Override
-	public List<String> getRandomPic() {
+    @Override
+    public List<String> getRandomPic() {
 
-		List<String> pics = userMapper.getRandomPic();
+        List<String> pics = userMapper.getRandomPic();
 
-		for (int i = pics.size(); i < UserMapper.INDEX_NEED_PIC_NUM; i++) {
-			pics.add("http://localhost:8080/pic/" + i + ".jpg");
-		}
-		return pics;
-	}
+        for (int i = pics.size(); i < UserMapper.INDEX_NEED_PIC_NUM; i++) {
+            pics.add("http://localhost:8080/pic/" + i + ".jpg");
+        }
+        return pics;
+    }
 
-	@Override
-	public List<OpenDirayUser> getOpenDirayUser() {
+    @Override
+    public List<OpenDirayUser> getOpenDirayUser() {
 
-		return userMapper.getOpenDirayUser();
-	}
+        return userMapper.getOpenDirayUser();
+    }
 
 }

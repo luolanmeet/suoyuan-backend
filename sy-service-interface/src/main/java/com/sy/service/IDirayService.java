@@ -11,7 +11,7 @@ import com.object.req.AddDirayReq;
  */
 public interface IDirayService {
 
-	void add(AddDirayReq req);
-	List<Diray> getByUserId(Integer userId);
-	List<Diray> getByWriteTime(Integer userId, String dateTime);
+    void add(AddDirayReq req);
+    List<Diray> getByUserId(Integer userId);
+    List<Diray> getByWriteTime(Integer userId, String dateTime);
 }

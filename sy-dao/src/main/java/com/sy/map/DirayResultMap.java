@@ -11,14 +11,14 @@ import com.cck.Diray;
  * @author cck
  */
 public interface DirayResultMap {
-	
-	@Results(id = "map", value = {
-		@Result(property = "id",        column = "id"),
-		@Result(property = "userId",    column = "user_id"),
-		@Result(property = "content",   column = "content"),
-		@Result(property = "writeTime", column = "write_time")
-	})
-	@Select("")
-	Diray resultMap();
-	
+
+    @Results(id = "map", value = {
+        @Result(property = "id",        column = "id"),
+        @Result(property = "userId",    column = "user_id"),
+        @Result(property = "content",   column = "content"),
+        @Result(property = "writeTime", column = "write_time")
+    })
+    @Select("")
+    Diray resultMap();
+
 }

@@ -21,12 +21,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Diray implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private Integer userId;
 	private String content;
+
+	private String posWord;
+	private String negWord;
+
 	private Date writeTime;
-	
+
 }

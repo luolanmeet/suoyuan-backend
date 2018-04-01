@@ -16,16 +16,16 @@ import com.sy.sql.DiraySql;
  * @author cck
  */
 public interface DirayMapper extends DirayResultMap {
-	
-	@InsertProvider(type = DiraySql.class, method = "save")
-	int save(@Param("userId")Integer userId, @Param("content")String content);
-	
-	@ResultMap("map")
-	@SelectProvider(type = DiraySql.class, method = "getByUserId")
-	List<Diray> getByUserId(Integer userId);
-	
-	@ResultMap("map")
-	@SelectProvider(type = DiraySql.class, method = "getByWriteTime")
-	List<Diray> getByWriteTime(@Param("userId")Integer userId, @Param("dateTime")String dateTime);
-	
+
+    @InsertProvider(type = DiraySql.class, method = "save")
+    int save(@Param("userId")Integer userId, @Param("content")String content);
+
+    @ResultMap("map")
+    @SelectProvider(type = DiraySql.class, method = "getByUserId")
+    List<Diray> getByUserId(Integer userId);
+
+    @ResultMap("map")
+    @SelectProvider(type = DiraySql.class, method = "getByWriteTime")
+    List<Diray> getByWriteTime(@Param("userId")Integer userId, @Param("dateTime")String dateTime);
+
 }

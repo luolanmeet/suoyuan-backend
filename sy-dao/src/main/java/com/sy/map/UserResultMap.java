@@ -13,25 +13,25 @@ import com.cck.User;
  */
 public interface UserResultMap {
 
-	@Results(id = "map", value = {
-		@Result(property = "id",            column = "id"),
-		@Result(property = "email",         column = "email"),
-		@Result(property = "password",      column = "password"),
-		@Result(property = "nickname",      column = "nickname"),
-		@Result(property = "avator",        column = "avator"),
-		@Result(property = "signature",     column = "signature"),
-		@Result(property = "isOpen",        column = "is_open"),
-		@Result(property = "dirayCount",    column = "diray_count"),
-		@Result(property = "lastDirayDate", column = "last_diray_date")
-	})
-	@Select("")
-	User user();
+    @Results(id = "map", value = {
+        @Result(property = "id",            column = "id"),
+        @Result(property = "email",         column = "email"),
+        @Result(property = "password",      column = "password"),
+        @Result(property = "nickname",      column = "nickname"),
+        @Result(property = "avator",        column = "avator"),
+        @Result(property = "signature",     column = "signature"),
+        @Result(property = "isOpen",        column = "is_open"),
+        @Result(property = "dirayCount",    column = "diray_count"),
+        @Result(property = "lastDirayDate", column = "last_diray_date")
+    })
+    @Select("")
+    User user();
 
-	@Results(id = "openDirayUserMap", value = {
-			@Result(property = "id",            column = "id"),
-			@Result(property = "avator",        column = "avator"),
-		})
-	@Select("")
-	OpenDirayUser openDirayUserMap();
+    @Results(id = "openDirayUserMap", value = {
+            @Result(property = "id",            column = "id"),
+            @Result(property = "avator",        column = "avator"),
+        })
+    @Select("")
+    OpenDirayUser openDirayUserMap();
 
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 
+ *
  * @author cck
  */
 @Getter
@@ -18,9 +18,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddDirayReq implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private Integer userId;
-	private String content;
+
+    private static final long serialVersionUID = 1L;
+
+    private Integer userId;
+    private String content;
 }

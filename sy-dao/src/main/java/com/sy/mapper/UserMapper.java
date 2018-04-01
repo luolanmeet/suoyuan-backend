@@ -19,33 +19,33 @@ import com.sy.sql.UserSql;
  */
 public interface UserMapper extends UserResultMap {
 
-	int INDEX_NEED_PIC_NUM = 5;
+    int INDEX_NEED_PIC_NUM = 5;
 
-	@InsertProvider(type = UserSql.class, method = "save")
-	int save(User user);
+    @InsertProvider(type = UserSql.class, method = "save")
+    int save(User user);
 
-	@UpdateProvider(type = UserSql.class, method = "update")
-	int update(User user);
+    @UpdateProvider(type = UserSql.class, method = "update")
+    int update(User user);
 
-	@UpdateProvider(type = UserSql.class, method = "updateLastDirayDate")
-	int updateLastDirayDate(@Param("id")Integer id, @Param("date")String date);
+    @UpdateProvider(type = UserSql.class, method = "updateLastDirayDate")
+    int updateLastDirayDate(@Param("id")Integer id, @Param("date")String date);
 
-	@ResultMap("map")
-	@SelectProvider(type = UserSql.class, method = "getById")
-	User getById(Integer id);
+    @ResultMap("map")
+    @SelectProvider(type = UserSql.class, method = "getById")
+    User getById(Integer id);
 
-	@ResultMap("map")
-	@SelectProvider(type = UserSql.class, method = "getByEmailAndPwd")
-	User getByEmailAndPwd(@Param("email")String email, @Param("pwd")String pwd);
+    @ResultMap("map")
+    @SelectProvider(type = UserSql.class, method = "getByEmailAndPwd")
+    User getByEmailAndPwd(@Param("email")String email, @Param("pwd")String pwd);
 
-	@SelectProvider(type = UserSql.class, method = "isExistEmail")
-	int isExistEmail(String email);
+    @SelectProvider(type = UserSql.class, method = "isExistEmail")
+    int isExistEmail(String email);
 
-	@SelectProvider(type = UserSql.class, method = "getRandomPic")
-	List<String> getRandomPic();
+    @SelectProvider(type = UserSql.class, method = "getRandomPic")
+    List<String> getRandomPic();
 
-	@ResultMap("openDirayUserMap")
-	@SelectProvider(type = UserSql.class, method = "getOpenDirayUser")
-	List<OpenDirayUser> getOpenDirayUser();
+    @ResultMap("openDirayUserMap")
+    @SelectProvider(type = UserSql.class, method = "getOpenDirayUser")
+    List<OpenDirayUser> getOpenDirayUser();
 
 }

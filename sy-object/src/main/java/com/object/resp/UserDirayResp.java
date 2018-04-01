@@ -16,9 +16,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDirayResp {
-	
-	String month;
-	String day;
-	String time;
-	String content;
+
+    String month;
+    String day;
+    String time;
+    String content;
 }

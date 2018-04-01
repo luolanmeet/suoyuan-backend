@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * 
+ *
  * @author cck
  */
 @Getter
@@ -16,8 +16,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseResp {
-	
-	private int code;
-	private String cause;
-	private Object data;
+
+    private int code;
+    private String cause;
+    private Object data;
 }

@@ -24,36 +24,36 @@ import com.sy.mapper.DirayMapper;
 @RunWith(SpringRunner.class)
 @Import({ Application.class })
 public class DirayMapperTest {
-    
+
     @Autowired
     DirayMapper dirayMapper;
-    
-	@Test
-	public void testAdd() {
-		
-		for (int i = 0; i < 5; i++) {
-			dirayMapper.save(6, "圣人之道，吾性自足！");
-		}
-	}
 
-	@Test
-	public void testGetByUserId() {
-		
-		List<Diray> list = dirayMapper.getByUserId(6);
-		System.out.println(list);
-		Date date = list.get(0).getWriteTime();
-		
-		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
-		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
-		System.out.println(dateTimeFormat.format(date));
-		System.out.println(timeFormat.format(date));
-	}
-	
-	@Test
-	public void testGetByWriteTime() {
-		
-		List<Diray> list = dirayMapper.getByWriteTime(1, "2018-3-11");
-		System.out.println(list);
-	}
-	
+    @Test
+    public void testAdd() {
+
+        for (int i = 0; i < 5; i++) {
+            dirayMapper.save(6, "圣人之道，吾性自足！");
+        }
+    }
+
+    @Test
+    public void testGetByUserId() {
+
+        List<Diray> list = dirayMapper.getByUserId(6);
+        System.out.println(list);
+        Date date = list.get(0).getWriteTime();
+
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+        System.out.println(dateTimeFormat.format(date));
+        System.out.println(timeFormat.format(date));
+    }
+
+    @Test
+    public void testGetByWriteTime() {
+
+        List<Diray> list = dirayMapper.getByWriteTime(1, "2018-3-11");
+        System.out.println(list);
+    }
+
 }

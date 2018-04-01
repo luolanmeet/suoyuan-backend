@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DirayResp {
-	
-	String time;
-	String content;
+
+    String time;
+    String content;
 }

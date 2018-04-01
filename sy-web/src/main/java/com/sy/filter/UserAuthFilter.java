@@ -23,68 +23,68 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserAuthFilter extends HandlerInterceptorAdapter {
 
-	private final static Integer ZERO = 0;
+    private final static Integer ZERO = 0;
 
-	private final static String TOKEN = "token";
-	private final static String USER_ID = "userId";
+    private final static String TOKEN = "token";
+    private final static String USER_ID = "userId";
 
-	private final static ErrorCodeException USER_NO_LOGIN
-		= new ErrorCodeException(ErrorCode.USER_NO_LOGIN, "用户未登录");
+    private final static ErrorCodeException USER_NO_LOGIN
+        = new ErrorCodeException(ErrorCode.USER_NO_LOGIN, "用户未登录");
 
-	private final static ErrorCodeException ERROR_TOKEN
-		= new ErrorCodeException(ErrorCode.ERROR_TOKEN, "token校验未通过");
+    private final static ErrorCodeException ERROR_TOKEN
+        = new ErrorCodeException(ErrorCode.ERROR_TOKEN, "token校验未通过");
 
-	/** 不校验token的请求 */
-	private final static Map<String,Integer> ignorePath = new HashMap<String, Integer>() {
-		/**  */
-		private static final long serialVersionUID = 1L;
+    /** 不校验token的请求 */
+    private final static Map<String,Integer> ignorePath = new HashMap<String, Integer>() {
+        /**  */
+        private static final long serialVersionUID = 1L;
 
-		{
-			put("/login", ZERO);
-			put("/register", ZERO);
-			put("/randomPic", ZERO);
-		}
-	};
+        {
+            put("/login", ZERO);
+            put("/register", ZERO);
+            put("/randomPic", ZERO);
+        }
+    };
 
-	@Override
-	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler)
-			throws Exception {
+    @Override
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler)
+            throws Exception {
 
-		HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletRequest request = (HttpServletRequest) req;
 
-		String path = request.getRequestURI();
-		log.info("request path:{}", path);
+        String path = request.getRequestURI();
+        log.info("request path:{}", path);
 
-		// 如果不是登录的请求，则需要校验是否登录
-		if (ignorePath.containsKey(path)) {
-			return true;
-		}
+        // 如果不是登录的请求，则需要校验是否登录
+        if (ignorePath.containsKey(path)) {
+            return true;
+        }
 
-//		String token = request.getHeader(TOKEN);
-		String token = request.getParameter(TOKEN);
-		String userId = request.getParameter(USER_ID);
+//        String token = request.getHeader(TOKEN);
+        String token = request.getParameter(TOKEN);
+        String userId = request.getParameter(USER_ID);
 
-		if (token == null) {
-			throw USER_NO_LOGIN;
-		}
+        if (token == null) {
+            throw USER_NO_LOGIN;
+        }
 
-		log.info("token : {}", token);
+        log.info("token : {}", token);
 
-		Optional<DecodedJWT> checkToken = JwtUtil.checkToken(token);
+        Optional<DecodedJWT> checkToken = JwtUtil.checkToken(token);
 
-		if (checkToken.isPresent() && userId != null) {
+        if (checkToken.isPresent() && userId != null) {
 
-			String userIdInToken = String.valueOf(checkToken.get().getClaim(USER_ID).asInt());
+            String userIdInToken = String.valueOf(checkToken.get().getClaim(USER_ID).asInt());
 
-			if (!userId.equals(userIdInToken)) {
-				throw ERROR_TOKEN;
-			}
-		} else {
+            if (!userId.equals(userIdInToken)) {
+                throw ERROR_TOKEN;
+            }
+        } else {
 
-			throw ERROR_TOKEN;
-		}
+            throw ERROR_TOKEN;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
 }
