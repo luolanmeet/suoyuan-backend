@@ -19,49 +19,77 @@ import com.sy.mapper.UserMapper;
 @RunWith(SpringRunner.class)
 @Import({ Application.class })
 public class UserMapperTest {
-	
+
     @Autowired
     UserMapper userMapper;
-    
+
 	@Test
 	public void testAdd() {
-		
+
 		User user = User.builder()
 			.email("994470425@qq.com")
 			.password("cck")
 			.nickname("Ryan")
 			.avator("avator")
+			.isOpen(1)
 			.build();
-		
+
 		System.out.println(userMapper.save(user));
 	}
-	
+
+	@Test
+	public void testAdd2() {
+
+		for (int i = 0; i < 10; i++) {
+
+			User user = User.builder()
+					.email(i + ".com")
+					.password("a")
+					.nickname("Ryan")
+					.avator("avator")
+					.isOpen(1)
+					.build();
+			userMapper.save(user);
+		}
+
+	}
+
 	@Test
 	public void testUpdate() {
-		
+
 		User user = User.builder()
 				.id(1)
 				.email("3409438184@qq.com")
 				.password("cck")
 				.nickname("Ryan")
 				.build();
-		
+
 		System.out.println(userMapper.update(user));
 	}
-	
+
 	@Test
 	public void testGetById() {
 		System.out.println(userMapper.getById(1));
 	}
-	
+
 	@Test
 	public void testGetByEmailAndPwd() {
 		System.out.println(userMapper.getByEmailAndPwd("994470425@qq.com", "cck"));
 	}
-	
+
 	@Test
 	public void testIsExistEmail() {
 		System.out.println(userMapper.isExistEmail("9944111701425@qq.com"));
 	}
-	
+
+	@Test
+	public void testGetRandomPic() {
+		System.out.println(userMapper.getRandomPic());
+	}
+
+	@Test
+	public void testGetOpenDirayUser() {
+		System.out.println(userMapper.getOpenDirayUser());
+	}
+
 }

@@ -19,18 +19,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable {
+public class OpenDirayUser implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String email;
-	private String password;
-	private String nickname;
 	private String avator;
-	private String signature;
-	private Integer isOpen;            // 0:不公开    1:公开
-	private Integer dirayCount;
-	private String lastDirayDate;
-
 }
