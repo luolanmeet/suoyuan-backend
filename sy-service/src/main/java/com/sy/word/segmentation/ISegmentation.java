@@ -8,6 +8,6 @@ import java.util.List;
  */
 public interface ISegmentation {
 
-    List<Word> seg(String text);
+    List<String> seg(String text);
 
 }

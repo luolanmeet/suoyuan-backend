@@ -2,6 +2,7 @@ package com.sy.word.dictionary;
 
 import com.sy.word.object.TrieNode;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author cck
  */
 @Slf4j
+@Getter
 public class DictionaryTrie {
 
 	// 词表的首字母数量在一个可控范围内，默认值为24000
