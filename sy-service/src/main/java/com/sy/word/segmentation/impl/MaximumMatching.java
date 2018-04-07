@@ -3,6 +3,8 @@ package com.sy.word.segmentation.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 从左向右取待切分语句的m个字符作为匹配字段（m是字典中最长的词的长度）
  * 如果成功匹配，则将这个匹配字段做为一个词切分出来。
@@ -10,6 +12,7 @@ import java.util.List;
  * 正向最大匹配算法
  * @author cck
  */
+@Component
 public class MaximumMatching extends AbstractSegmentation {
 
     @Override

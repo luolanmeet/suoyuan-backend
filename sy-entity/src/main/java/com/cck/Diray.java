@@ -22,15 +22,20 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Diray implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	private Integer userId;
-	private String content;
-
-	private String posWord;
-	private String negWord;
-
-	private Date writeTime;
-
+    private Integer id;
+    private Integer userId;
+    private String content;
+    private Date writeTime;
+    
+    private Double emotionVal;
+    private Double poEmotionVal;
+    private Double neEmotionVal;
+    private Integer poCount;
+    private Integer neCount;
+    private String poSentences;
+    private String neSentences;
+    private String poSentenceDetails;
+    private String neSentenceDetails;
 }

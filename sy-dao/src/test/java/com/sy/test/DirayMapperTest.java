@@ -30,10 +30,22 @@ public class DirayMapperTest {
 
     @Test
     public void testAdd() {
-
-        for (int i = 0; i < 5; i++) {
-            dirayMapper.save(6, "圣人之道，吾性自足！");
-        }
+        
+        Diray diray = Diray.builder()
+                .userId(6)
+                .content("hello world")
+//                .emotionVal(0D)
+//                .poEmotionVal(0D)
+//                .neEmotionVal(0D)
+//                .poCount(0)
+//                .neCount(0)
+//                .poSentences("")
+//                .neSentences("")
+//                .poSentenceDetails("")
+//                .neSentenceDetails("")
+                .build();
+        
+        dirayMapper.save(diray);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.sy.service;
+package com.sy;
 
 import java.util.concurrent.CountDownLatch;
 

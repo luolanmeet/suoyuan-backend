@@ -21,8 +21,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class OpenDirayUser implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	private String avator;
+    private Integer id;
+    private String avator;
 }

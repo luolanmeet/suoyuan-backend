@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.sy.emotion.object.Emotion;
 import com.sy.emotion.object.Emotions;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Component
 public class EmotionJudge extends AbstractJudge {
 
     @Override

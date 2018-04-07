@@ -27,7 +27,7 @@ public class Emotions {
     /** 积极句子数量 */
     private Integer poCount = 0;
     /** 消极句子数量 */
-    private Integer neCount = 0;
+    private Integer neCount = 0; 
     /** 积极句子*/
     private List<Emotion> poEmotions = new ArrayList<>(5);
     /** 消极句子 */
@@ -46,4 +46,16 @@ public class Emotions {
         }
         emotionVal += sentence.getEmotionSentenceVal();
     }
+    
+    public String getEmotionStr(List<Emotion> emotions) {
+        
+        StringBuilder builder = new StringBuilder();
+        
+        for (Emotion e : emotions) {
+            builder.append(e.getEmotionSentenceValDetail()).append(";");
+        }
+        
+        return builder.toString();
+    }
+    
 }

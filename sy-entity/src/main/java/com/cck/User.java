@@ -21,16 +21,15 @@ import lombok.ToString;
 @AllArgsConstructor
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	private String email;
-	private String password;
-	private String nickname;
-	private String avator;
-	private String signature;
-	private Integer isOpen;            // 0:不公开    1:公开
-	private Integer dirayCount;
-	private String lastDirayDate;
-
+    private Integer id;
+    private String email;
+    private String password;
+    private String nickname;
+    private String avator;
+    private String signature;
+    private Integer isOpen;            // 0:不公开    1:公开
+    private Integer dirayCount;
+    private String lastDirayDate;
 }
