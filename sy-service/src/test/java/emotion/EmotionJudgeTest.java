@@ -30,5 +30,5 @@ public class EmotionJudgeTest {
         log.info("{}", judge.judge(m.seg(str5)));
         log.info("{}", judge.judge(m.seg(str6)));
     }
-
+    
 }

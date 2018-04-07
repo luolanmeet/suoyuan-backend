@@ -117,17 +117,31 @@ public class UserSql {
                 if(user.getLastDirayDate() != null) {
                     SET("last_diray_date = #{lastDirayDate}");
                 }
+                if(user.getNowEmotion() != null) {
+                    SET("now_emotion = #{nowEmotion}");
+                }
+                if(user.getLastDirayEmotion() != null) {
+                    SET("last_diray_emotion = #{lastDirayEmotion}");
+                }
                 WHERE("id = #{id}");
             }
         }.toString();
     }
 
-    /** 设置用户最后编写日志的日期 */
-    public String updateLastDirayDate(@Param("id")Integer userId, @Param("date")String date) {
+    /** 设置用户最后编写日志的日期与情感值 */
+    public String updateLastDirayDateAndEmotion(
+            @Param("id")Integer userId, 
+            @Param("date")String date, 
+            @Param("nowEmotion")Double nowEmotion, 
+            @Param("lastDirayEmotion")Double lastDirayEmotion, 
+            @Param("lastLoginDate")String lastLoginDate) {
         return new SQL() {
             {
                 UPDATE(TABLE_NAME);
                 SET("last_diray_date = #{date}");
+                SET("now_emotion = #{nowEmotion}");
+                SET("last_diray_emotion = #{lastDirayEmotion}");
+                SET("last_login_date = #{lastLoginDate}");
                 WHERE("id = #{id}");
             }
         }.toString();

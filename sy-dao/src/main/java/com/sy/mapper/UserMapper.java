@@ -27,8 +27,14 @@ public interface UserMapper extends UserResultMap {
     @UpdateProvider(type = UserSql.class, method = "update")
     int update(User user);
 
-    @UpdateProvider(type = UserSql.class, method = "updateLastDirayDate")
-    int updateLastDirayDate(@Param("id")Integer id, @Param("date")String date);
+    @UpdateProvider(type = UserSql.class, 
+            method = "updateLastDirayDateAndEmotion")
+    int updateLastDirayDateAndEmotion(
+            @Param("id")Integer id, 
+            @Param("date")String date, 
+            @Param("nowEmotion")Double nowEmotion, 
+            @Param("lastDirayEmotion")Double lastDirayEmotion, 
+            @Param("lastLoginDate")String lastLoginDate);
 
     @ResultMap("map")
     @SelectProvider(type = UserSql.class, method = "getById")
@@ -36,7 +42,8 @@ public interface UserMapper extends UserResultMap {
 
     @ResultMap("map")
     @SelectProvider(type = UserSql.class, method = "getByEmailAndPwd")
-    User getByEmailAndPwd(@Param("email")String email, @Param("pwd")String pwd);
+    User getByEmailAndPwd(@Param("email")String email, 
+            @Param("pwd")String pwd);
 
     @SelectProvider(type = UserSql.class, method = "isExistEmail")
     int isExistEmail(String email);

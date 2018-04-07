@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.cck.Diray;
+import com.cck.User;
 import com.object.req.AddDirayReq;
 import com.sy.emotion.judge.impl.EmotionJudge;
 import com.sy.emotion.object.Emotions;
@@ -64,8 +65,22 @@ public class DirayService implements IDirayService {
                    .build();
         dirayMapper.save(diray);
         
-        userMapper.updateLastDirayDate(req.getUserId(),
-                FORMATTER.get().format(new Date()));
+        String date = FORMATTER.get().format(new Date());
+        
+        // 设置最后一次写日记的时间、情感值变化 
+        User user = userMapper.getById(req.getUserId());
+        Double lastDirayEmotion = 0D;
+        Double nowEmotion = user.getNowEmotion() + emotions.getEmotionVal();
+        
+        // 如果是今天的第一篇日记，则重置之前日志的情感值。如果不是，则在原来的基础上修改
+        if (user.getLastDirayDate().equals(date)) {
+            lastDirayEmotion = user.getLastDirayEmotion() + emotions.getEmotionVal();
+        } else {
+            lastDirayEmotion = emotions.getEmotionVal();
+        }
+        
+        userMapper.updateLastDirayDateAndEmotion(req.getUserId(), date, 
+                nowEmotion, lastDirayEmotion, user.getLastLoginDate());
         log.info("save diray success");
     }
 

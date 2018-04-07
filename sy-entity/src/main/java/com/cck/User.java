@@ -32,4 +32,8 @@ public class User implements Serializable {
     private Integer isOpen;            // 0:不公开    1:公开
     private Integer dirayCount;
     private String lastDirayDate;
+    
+    private Double nowEmotion;         // 当前情感值,当前情感会随时间变化而变化
+    private Double lastDirayEmotion;   // 上次写日记的情感值
+    private String lastLoginDate;      // 上次登录的时间
 }
