@@ -157,12 +157,14 @@ public class UserSql {
     }
 
     /** 获取公开日志 */
-    public String getOpenDirayUser() {
+    public String getOpenDirayUser(Double nowEmotion) {
 
         StringBuilder sql = new StringBuilder()
                 .append("SELECT * FROM ")
                 .append(TABLE_NAME)
-                .append(" WHERE is_open = 1 LIMIT 40");
+                .append(" WHERE is_open = 1")
+                .append(" ORDER BY ABS(last_diray_emotion - #{nowEmotion})")
+                .append(" LIMIT 40");
 
         return sql.toString();
     }

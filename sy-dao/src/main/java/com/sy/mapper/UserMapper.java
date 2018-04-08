@@ -53,6 +53,6 @@ public interface UserMapper extends UserResultMap {
 
     @ResultMap("openDirayUserMap")
     @SelectProvider(type = UserSql.class, method = "getOpenDirayUser")
-    List<OpenDirayUser> getOpenDirayUser();
+    List<OpenDirayUser> getOpenDirayUser(Double nowEmotion);
 
 }

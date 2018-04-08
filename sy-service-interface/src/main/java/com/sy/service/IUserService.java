@@ -17,5 +17,5 @@ public interface IUserService {
     void update(User user);
     User getById(Integer userId);
     List<String> getRandomPic();
-    List<OpenDirayUser> getOpenDirayUser();
+    List<OpenDirayUser> getOpenDirayUser(Integer userId);
 }

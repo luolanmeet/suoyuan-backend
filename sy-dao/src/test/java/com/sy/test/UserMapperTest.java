@@ -89,7 +89,7 @@ public class UserMapperTest {
 
     @Test
     public void testGetOpenDirayUser() {
-        System.out.println(userMapper.getOpenDirayUser());
+        System.out.println(userMapper.getOpenDirayUser(0D));
     }
 
 }

@@ -55,7 +55,8 @@ public class UserService implements IUserService {
         
         long passDay = System.currentTimeMillis();
         passDay = passDay - cal.getTimeInMillis();
-        passDay = passDay / (24 * 60 * 60 * 1000);
+        // 24 * 60 * 60 * 1000
+        passDay = passDay / 86400000;
         
         Double reduceEmotion = passDay * 0.5;
         Double nowEmotion = 0D;
@@ -120,9 +121,10 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<OpenDirayUser> getOpenDirayUser() {
+    public List<OpenDirayUser> getOpenDirayUser(Integer userId) {
 
-        return userMapper.getOpenDirayUser();
+        User user = userMapper.getById(userId);
+        return userMapper.getOpenDirayUser(user.getNowEmotion());
     }
 
 }

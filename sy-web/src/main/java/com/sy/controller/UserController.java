@@ -114,10 +114,10 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/getOpenDirayUser")
-    public BaseResp getOpenDirayUser() {
+    public BaseResp getOpenDirayUser(Integer userId) {
 
         List<OpenDirayUser> openDirayUsers
-            = userService.getOpenDirayUser();
+            = userService.getOpenDirayUser(userId);
         return success(Lists.partition(openDirayUsers, 5));
     }
 
