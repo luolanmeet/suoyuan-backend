@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.cck.Article;
 import com.cck.Diray;
 import com.cck.OpenDirayUser;
 import com.cck.User;
@@ -119,6 +120,13 @@ public class UserController extends BaseController {
         List<OpenDirayUser> openDirayUsers
             = userService.getOpenDirayUser(userId);
         return success(Lists.partition(openDirayUsers, 5));
+    }
+    
+    @RequestMapping(value = "/getArticle")
+    public BaseResp getArticle(Integer userId) {
+        
+        Article article = userService.getArticle(userId);
+        return success(article);
     }
 
 }

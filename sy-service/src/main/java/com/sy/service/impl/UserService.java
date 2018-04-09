@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.cck.Article;
 import com.cck.OpenDirayUser;
 import com.cck.User;
 import com.object.code.ErrorCode;
 import com.object.exception.ErrorCodeException;
+import com.sy.mapper.ArticleMapper;
 import com.sy.mapper.UserMapper;
 import com.sy.service.IUserService;
 
@@ -29,7 +31,10 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
-
+    
+    @Autowired
+    private ArticleMapper articleMapper;
+    
     public final static ThreadLocal<SimpleDateFormat> FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
     
@@ -125,6 +130,13 @@ public class UserService implements IUserService {
 
         User user = userMapper.getById(userId);
         return userMapper.getOpenDirayUser(user.getNowEmotion());
+    }
+
+    @Override
+    public Article getArticle(Integer userId) {
+        
+        User user = userMapper.getById(userId);
+        return articleMapper.getArticle(user.getNowEmotion());
     }
 
 }
