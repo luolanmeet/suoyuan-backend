@@ -92,7 +92,7 @@ public class EmotionJudge extends AbstractJudge {
             
             val *= -1;
             sentence.append(word);
-            sentenceDetail.append(DEGREE_WORD)
+            sentenceDetail.append(DENY_WORD)
                           .append(":")
                           .append(word)
                           .append(":")

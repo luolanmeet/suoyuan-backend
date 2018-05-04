@@ -139,4 +139,10 @@ public class UserService implements IUserService {
         return articleMapper.getArticle(user.getNowEmotion());
     }
 
+    @Override
+    public List<String> getAvator(List<Integer> userIds) {
+        
+        return userMapper.getAvator(userIds);
+    }
+
 }

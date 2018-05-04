@@ -23,19 +23,19 @@ import com.object.resp.UserMsgAndDiray;
 @Component
 public class RespUtil {
 
-    public final static ThreadLocal<SimpleDateFormat> DATE_FORMATTER
+    final static ThreadLocal<SimpleDateFormat> DATE_FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy年MM月dd号 EEEE"));
 
-    public final static ThreadLocal<SimpleDateFormat> TIME_FORMATTER
+    final static ThreadLocal<SimpleDateFormat> TIME_FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("HH:mm"));
 
-    public final static ThreadLocal<SimpleDateFormat> YEAR_FORMATTER
+    final static ThreadLocal<SimpleDateFormat> YEAR_FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("- yyyy年 -"));
 
-    public final static ThreadLocal<SimpleDateFormat> MONTH_FORMATTER
+    final static ThreadLocal<SimpleDateFormat> MONTH_FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("MM月"));
 
-    public final static ThreadLocal<SimpleDateFormat> DAY_FORMATTER
+    final static ThreadLocal<SimpleDateFormat> DAY_FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd"));
 
     public UserMsgAndDiray getUserIndexResp(User user, List<Diray> dirays) {
@@ -75,10 +75,10 @@ public class RespUtil {
         Map<String, UserAllDirayResp> map = new LinkedHashMap<>();
         for (Diray diray : dirays) {
             Date date = diray.getWriteTime();
-            String year    = YEAR_FORMATTER.get().format(date);
+            String year    = YEAR_FORMATTER .get().format(date);
             String month   = MONTH_FORMATTER.get().format(date);
-            String day     = DAY_FORMATTER.get().format(date);
-            String time    = TIME_FORMATTER.get().format(date);
+            String day     = DAY_FORMATTER  .get().format(date);
+            String time    = TIME_FORMATTER .get().format(date);
             String content = diray.getContent();
             UserDirayResp userDirayResp = UserDirayResp.builder()
                     .month(month)

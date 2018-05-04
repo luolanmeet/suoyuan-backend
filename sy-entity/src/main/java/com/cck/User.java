@@ -10,7 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
+ * 用户
  * @author cck
  */
 @Getter

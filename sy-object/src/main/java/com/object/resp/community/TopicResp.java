@@ -1,28 +1,25 @@
-package com.cck;
-
-import java.io.Serializable;
+package com.object.resp.community;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
- * 公开日记用户信息
+ * 话题首页
  * @author cck
  */
 @Getter
 @Setter
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class OpenDirayUser implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    private Integer id;
+public class TopicResp {
+    
+    private Integer topicId;
     private String avator;
+    private String title;
+    private String tag;
+    private Integer replyNum;
 }

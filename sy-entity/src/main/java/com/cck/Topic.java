@@ -11,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 日记
+ * 话题
  * @author cck
  */
 @Getter
@@ -20,22 +20,16 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Diray implements Serializable {
-
+public class Topic implements Serializable {
+    
     private static final long serialVersionUID = 1L;
-
+    
     private Integer id;
     private Integer userId;
+    private String title;
+    private String tag;       // 标签
     private String content;
     private Date writeTime;
+    private Integer replyNum; // 评论数
     
-    private Double emotionVal;
-    private Double poEmotionVal;
-    private Double neEmotionVal;
-    private Integer poCount;
-    private Integer neCount;
-    private String poSentences;
-    private String neSentences;
-    private String poSentenceDetails;
-    private String neSentenceDetails;
 }

@@ -1,5 +1,8 @@
 package com.sy.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +94,28 @@ public class UserMapperTest {
     public void testGetOpenDirayUser() {
         System.out.println(userMapper.getOpenDirayUser(0D));
     }
-
+    
+    @Test
+    public void testGetAvator() {
+        
+        List<Integer> list = new ArrayList<>();
+        list.add(6);
+        list.add(7);
+        
+        List<String> res = userMapper.getAvator(list);
+        System.out.println(res);
+    }
+    
+    @Test
+    public void testGetAvator2() {
+        
+        List<Integer> list = new ArrayList<>();
+        list.add(6);
+        list.add(6);
+        list.add(7);
+        
+        List<String> res = userMapper.getAvator(list);
+        System.out.println(res);
+    }
+    
 }

@@ -18,7 +18,10 @@ import com.sy.sql.UserSql;
  * @author cck
  */
 public interface UserMapper extends UserResultMap {
-
+    
+    /**
+     * 首页需要的图片数量
+     */
     int INDEX_NEED_PIC_NUM = 5;
 
     @InsertProvider(type = UserSql.class, method = "save")
@@ -42,7 +45,8 @@ public interface UserMapper extends UserResultMap {
 
     @ResultMap("map")
     @SelectProvider(type = UserSql.class, method = "getByEmailAndPwd")
-    User getByEmailAndPwd(@Param("email")String email, 
+    User getByEmailAndPwd(
+            @Param("email")String email, 
             @Param("pwd")String pwd);
 
     @SelectProvider(type = UserSql.class, method = "isExistEmail")
@@ -54,5 +58,21 @@ public interface UserMapper extends UserResultMap {
     @ResultMap("openDirayUserMap")
     @SelectProvider(type = UserSql.class, method = "getOpenDirayUser")
     List<OpenDirayUser> getOpenDirayUser(Double nowEmotion);
-
+    
+    // 用SQLProvider的方式不知道为什么做不了
+    /*@Select({
+        "<script>" 
+            + "SELECT avator FROM t_user "
+            + "WHERE id IN "
+            + "<foreach item='item' collection='list' open='(' separator=',' close=')'>"
+            + "#{item}"
+            + "</foreach>"
+      + "</script>"
+    })
+    List<String> getAvator(List<Integer> userIds);*/
+    
+    // 用SQLProvider的方式不知道为什么做不了
+    @SelectProvider(type = UserSql.class, method = "getAvator")
+    List<String> getAvator(@Param("userIds")List<Integer> userIds);
+    
 }

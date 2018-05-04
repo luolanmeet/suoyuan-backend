@@ -1,5 +1,7 @@
 package com.sy.sql;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -168,5 +170,22 @@ public class UserSql {
 
         return sql.toString();
     }
-
+    
+    public String getAvator(@Param("userIds")List<Integer> userIds) {
+        
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT avator FROM ")
+           .append(TABLE_NAME)
+           .append(" WHERE 1 = 2 ");
+        
+        for (Integer id : userIds) {
+            sql.append(" UNION ALL")
+                .append(" SELECT avator FROM ")
+                .append(TABLE_NAME)
+                .append(" WHERE id = ")
+                .append(id);
+        }
+        
+        return sql.toString();
+    }
 }

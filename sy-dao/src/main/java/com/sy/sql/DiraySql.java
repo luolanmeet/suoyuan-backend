@@ -61,7 +61,8 @@ public class DiraySql {
      * @param dateTime
      * @return
      */
-    public String getByWriteTime(@Param("userId")Integer userId,
+    public String getByWriteTime(
+            @Param("userId")Integer userId,
             @Param("dateTime")String dateTime) {
 
         return new SQL() {

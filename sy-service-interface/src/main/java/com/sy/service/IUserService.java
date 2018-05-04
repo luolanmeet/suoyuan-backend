@@ -20,4 +20,5 @@ public interface IUserService {
     List<String> getRandomPic();
     List<OpenDirayUser> getOpenDirayUser(Integer userId);
     Article getArticle(Integer userId);
+    List<String> getAvator(List<Integer> userIds);
 }
