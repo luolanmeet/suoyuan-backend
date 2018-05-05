@@ -26,6 +26,7 @@ public interface DirayMapper extends DirayResultMap {
 
     @ResultMap("map")
     @SelectProvider(type = DiraySql.class, method = "getByWriteTime")
-    List<Diray> getByWriteTime(@Param("userId")Integer userId, @Param("dateTime")String dateTime);
-
+    List<Diray> getByWriteTime(
+            @Param("userId")Integer userId, 
+            @Param("dateTime")String dateTime);
 }

@@ -37,5 +37,4 @@ public interface UserResultMap {
     })
     @Select("")
     OpenDirayUser openDirayUserMap();
-
 }

@@ -22,5 +22,4 @@ public interface ArticleResultMap {
     })
     @Select("")
     Article article();
-
 }

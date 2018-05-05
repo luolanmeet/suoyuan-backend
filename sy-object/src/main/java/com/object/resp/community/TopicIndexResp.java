@@ -19,5 +19,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TopicIndexResp {
     
-    List<Integer> topics;
+    List<TopicResp> topics;
+    List<String> tag;
 }

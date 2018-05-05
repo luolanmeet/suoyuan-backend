@@ -39,5 +39,4 @@ public class ArticleSql {
 
         return sql.toString();
     }
-
 }

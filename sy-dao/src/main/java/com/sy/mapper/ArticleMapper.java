@@ -20,5 +20,4 @@ public interface ArticleMapper extends ArticleResultMap {
     @ResultMap("map")
     @SelectProvider(type = ArticleSql.class, method = "getArticle")
     Article getArticle(Double nowEmotion);
-    
 }

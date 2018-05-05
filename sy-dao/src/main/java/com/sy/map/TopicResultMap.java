@@ -23,5 +23,4 @@ public interface TopicResultMap {
     })
     @Select("")
     Topic resultMap();
-
 }

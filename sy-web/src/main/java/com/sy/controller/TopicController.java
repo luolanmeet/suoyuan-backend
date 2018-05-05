@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cck.Topic;
 import com.object.resp.BaseResp;
+import com.object.resp.community.TopicIndexResp;
 import com.object.resp.community.TopicResp;
+import com.sy.service.ITagService;
 import com.sy.service.ITopicService;
 import com.sy.service.IUserService;
 
@@ -25,6 +27,9 @@ public class TopicController extends BaseController {
     private ITopicService topicService;
 
     @Reference
+    private ITagService tagService;
+    
+    @Reference
     private IUserService userService;    
     
     @RequestMapping(value = "/createTopic")
@@ -37,13 +42,13 @@ public class TopicController extends BaseController {
     public BaseResp topic() {
         
         List<Topic> topic = topicService.get();
+        
         List<Integer> userIds = topic.stream()
                 .map(Topic::getUserId)
                 .collect(Collectors.toList());
         List<String> avators = userService.getAvator(userIds);
         
-        List<TopicResp> topicResps = new ArrayList<>();
-        
+        List<TopicResp> topics = new ArrayList<>();
         for (int i = 0; i < topic.size(); i++) {
             
             Topic temp = topic.get(i);
@@ -54,10 +59,12 @@ public class TopicController extends BaseController {
                 .replyNum(temp.getReplyNum())
                 .avator(avators.get(i))
                 .build();
-            topicResps.add(topicResp);
+            topics.add(topicResp);
         }
         
-        return success(topicResps);
+        List<String> tags = tagService.get();
+        
+        return success(new TopicIndexResp(topics, tags));
     }
 
 }

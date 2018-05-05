@@ -27,5 +27,4 @@ public class Topic implements Serializable {
     private String content;
     private Date writeTime;
     private Integer replyNum; // 评论数
-    
 }

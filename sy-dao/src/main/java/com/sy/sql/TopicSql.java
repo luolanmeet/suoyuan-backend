@@ -38,7 +38,5 @@ public class TopicSql {
                 FROM(TABLE_NAME);
             }
         }.toString();
-        
     }
-    
 }

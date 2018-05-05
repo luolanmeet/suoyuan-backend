@@ -59,20 +59,6 @@ public interface UserMapper extends UserResultMap {
     @SelectProvider(type = UserSql.class, method = "getOpenDirayUser")
     List<OpenDirayUser> getOpenDirayUser(Double nowEmotion);
     
-    // 用SQLProvider的方式不知道为什么做不了
-    /*@Select({
-        "<script>" 
-            + "SELECT avator FROM t_user "
-            + "WHERE id IN "
-            + "<foreach item='item' collection='list' open='(' separator=',' close=')'>"
-            + "#{item}"
-            + "</foreach>"
-      + "</script>"
-    })
-    List<String> getAvator(List<Integer> userIds);*/
-    
-    // 用SQLProvider的方式不知道为什么做不了
     @SelectProvider(type = UserSql.class, method = "getAvator")
     List<String> getAvator(@Param("userIds")List<Integer> userIds);
-    
 }

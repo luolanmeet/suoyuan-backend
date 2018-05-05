@@ -91,5 +91,4 @@ public class DiraySql {
     public void getLastDiray(@Param("userId")Integer userId) {
 
     }
-
 }

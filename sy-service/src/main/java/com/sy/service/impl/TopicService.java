@@ -38,5 +38,4 @@ public class TopicService implements ITopicService {
     public List<Topic> get() {
         return topicMapper.get();
     }
-
 }

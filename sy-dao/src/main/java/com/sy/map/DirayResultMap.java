@@ -27,9 +27,7 @@ public interface DirayResultMap {
         @Result(property = "neSentences",       column = "ne_sentences"),
         @Result(property = "poSentenceDetails", column = "po_sentence_details"),
         @Result(property = "neSentenceDetails", column = "ne_sentence_details"),
-        
     })
     @Select("")
     Diray resultMap();
-
 }
