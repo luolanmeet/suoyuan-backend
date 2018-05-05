@@ -33,12 +33,25 @@ public class TopicController extends BaseController {
     private IUserService userService;    
     
     @RequestMapping(value = "/createTopic")
-    public BaseResp add(Integer userId, String content) {
+    public BaseResp add(
+            Integer userId, String title, 
+            String content, String tag) {
         
+        Topic topic = Topic.builder()
+             .userId(userId)
+             .title(title)
+             .content(content)
+             .tag(tag)
+             .build();
+        topicService.add(topic);
+        
+        if (tag != null && !"".equals(tag)) {
+            tagService.add(userId, tag);
+        }
         return success();
     }
 
-    @RequestMapping(value = "/topic")
+    @RequestMapping(value = "/topic") 
     public BaseResp topic() {
         
         List<Topic> topic = topicService.get();

@@ -20,5 +20,5 @@ import lombok.Setter;
 public class TopicIndexResp {
     
     List<TopicResp> topics;
-    List<String> tag;
+    List<String> tags;
 }
