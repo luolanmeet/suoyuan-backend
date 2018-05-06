@@ -1,14 +1,22 @@
 package com.sy.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.cck.Reply;
 import com.cck.Topic;
+import com.cck.User;
+import com.object.resp.community.ReplyResp;
+import com.object.resp.community.TopicDetailResp;
+import com.sy.mapper.ReplyMapper;
 import com.sy.mapper.TopicMapper;
+import com.sy.mapper.UserMapper;
 import com.sy.service.ITopicService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +31,13 @@ import lombok.extern.slf4j.Slf4j;
 public class TopicService implements ITopicService {
 
     @Autowired
+    private ReplyMapper replyMapper;
+    
+    @Autowired
     private TopicMapper topicMapper;
+    
+    @Autowired
+    private UserMapper userMapper;
     
     public final static ThreadLocal<SimpleDateFormat> FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
@@ -37,5 +51,63 @@ public class TopicService implements ITopicService {
     @Override
     public List<Topic> get() {
         return topicMapper.get();
+    }
+
+    @Override
+    public TopicDetailResp getTopic(Integer topicId) {
+        
+        Topic topic = topicMapper.getById(topicId);
+        Integer userId = topic.getUserId();
+        User user = userMapper.getById(userId);
+        
+        List<Reply> replys = replyMapper.getByTopicId(topicId);
+        List<ReplyResp> replyResps = new ArrayList<>(replys.size());
+        
+        int i = 1;
+        for (Reply reply : replys) {
+            
+            ReplyResp replyResp = ReplyResp.builder()
+            .replyId(reply.getId())
+            .content(reply.getContent())
+            .avator(reply.getAvator())
+            .time(formatTime(reply.getWriteTime()))
+            .nickname(reply.getNickname())
+            .toUserId(reply.getToUserIds())
+            .no(i++)
+            .build();
+            
+            replyResps.add(replyResp);
+        }
+        
+        return TopicDetailResp.builder()
+                .avator(user.getAvator())
+                .nickname(user.getNickname())
+                .title(topic.getTitle())
+                .tag(topic.getTag())
+                .content(topic.getContent())
+                .replys(replyResps)
+                .build();
+    }
+    
+    /**
+     * 计算过去了多少时间
+     * 超过一天就显示多少天前
+     * 没超过一天就显示多少小时之前
+     * @param writeTime
+     * @return
+     */
+    private String formatTime(Date writeTime) {
+        
+        long nowTime = System.currentTimeMillis();
+        long passTime = nowTime - writeTime.getTime(); 
+        
+        // 60 * 60 * 1000
+        passTime = passTime / 3_600_000;
+        
+        if (passTime > 24) {
+            return (passTime / 24) + "天前";
+        } else {
+            return passTime + "小时前";
+        }
     }
 }

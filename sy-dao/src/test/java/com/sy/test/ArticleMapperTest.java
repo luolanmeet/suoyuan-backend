@@ -33,7 +33,6 @@ public class ArticleMapperTest {
                 .content("hello world")
                 .emotionVal(5D)
                 .build();
-        
         mapper.save(article);
     }
     

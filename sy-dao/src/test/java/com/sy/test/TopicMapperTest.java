@@ -39,4 +39,9 @@ public class TopicMapperTest {
     public void testGet() {
         System.out.println(topicMapper.get());
     }
+    
+    @Test
+    public void testGetById() {
+        System.out.println(topicMapper.getById(1));
+    }
 }

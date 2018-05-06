@@ -61,7 +61,7 @@ public class UserService implements IUserService {
         long passDay = System.currentTimeMillis();
         passDay = passDay - cal.getTimeInMillis();
         // 24 * 60 * 60 * 1000
-        passDay = passDay / 86400000;
+        passDay = passDay / 86_400_000;
         
         Double reduceEmotion = passDay * 0.5;
         Double nowEmotion = 0D;

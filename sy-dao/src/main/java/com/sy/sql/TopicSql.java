@@ -39,4 +39,15 @@ public class TopicSql {
             }
         }.toString();
     }
+    
+    public String getById(Integer topicId) {
+        
+        return new SQL() {
+            {
+                SELECT("*");
+                FROM(TABLE_NAME);
+                WHERE("id = #{topicId}");
+            }
+        }.toString();
+    }
 }

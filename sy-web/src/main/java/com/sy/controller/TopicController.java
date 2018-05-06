@@ -79,5 +79,11 @@ public class TopicController extends BaseController {
         
         return success(new TopicIndexResp(topics, tags));
     }
-
+    
+    @RequestMapping(value = "/getTopic") 
+    public BaseResp getTopic(Integer topicId) {
+         
+        return success(topicService.getTopic(topicId));
+    }
+    
 }
