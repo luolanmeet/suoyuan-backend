@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.cck.Reply;
 import com.cck.Topic;
 import com.object.resp.BaseResp;
 import com.object.resp.community.TopicIndexResp;
@@ -82,8 +83,14 @@ public class TopicController extends BaseController {
     
     @RequestMapping(value = "/getTopic") 
     public BaseResp getTopic(Integer topicId) {
-         
+        
         return success(topicService.getTopic(topicId));
+    }
+    
+    @RequestMapping(value = "/reply") 
+    public BaseResp reply(Reply reply) {
+        topicService.reply(reply);
+        return success();
     }
     
 }

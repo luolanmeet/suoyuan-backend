@@ -68,11 +68,12 @@ public class TopicService implements ITopicService {
             
             ReplyResp replyResp = ReplyResp.builder()
             .replyId(reply.getId())
+            .userId(reply.getFromUserId())
             .content(reply.getContent())
             .avator(reply.getAvator())
             .time(formatTime(reply.getWriteTime()))
             .nickname(reply.getNickname())
-            .toUserId(reply.getToUserIds())
+            .toUserId(reply.getToUserId())
             .no(i++)
             .build();
             
@@ -80,6 +81,8 @@ public class TopicService implements ITopicService {
         }
         
         return TopicDetailResp.builder()
+                .topicId(topicId)
+                .userId(userId)
                 .avator(user.getAvator())
                 .nickname(user.getNickname())
                 .title(topic.getTitle())
@@ -93,6 +96,7 @@ public class TopicService implements ITopicService {
      * 计算过去了多少时间
      * 超过一天就显示多少天前
      * 没超过一天就显示多少小时之前
+     * 没超过一小时就显示多少分钟之前
      * @param writeTime
      * @return
      */
@@ -101,13 +105,35 @@ public class TopicService implements ITopicService {
         long nowTime = System.currentTimeMillis();
         long passTime = nowTime - writeTime.getTime(); 
         
-        // 60 * 60 * 1000
-        passTime = passTime / 3_600_000;
+        // 60 * 1000
+        passTime = passTime / 60_000;
         
-        if (passTime > 24) {
-            return (passTime / 24) + "天前";
+        if (passTime / 60 > 0) {
+            // 小时
+            passTime /= 60; 
+
+            if (passTime > 24) {
+                return (passTime / 24) + "天前";
+            } else {
+                return passTime + "小时前";
+            }
         } else {
-            return passTime + "小时前";
+            return passTime + "分钟前";
+        }
+        
+    }
+
+    @Override
+    public void reply(Reply reply) {
+        
+        replyMapper.save(reply);
+        
+        if (reply.getToReplyId() != -1) {
+            
+            String path = replyMapper.getPath(reply.getToReplyId());
+            replyMapper.updatePath(reply.getId(), path + reply.getId() + "/");        
+        } else {
+            replyMapper.updatePath(reply.getId(), reply.getId() + "/");
         }
     }
 }
