@@ -26,5 +26,6 @@ public class ReplyResp implements Serializable {
     private String avator;
     private String time;
     private Integer toUserId;
+    private String toNickname;
     private Integer no;        // 几楼
 }

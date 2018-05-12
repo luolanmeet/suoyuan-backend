@@ -74,6 +74,7 @@ public class TopicService implements ITopicService {
             .time(formatTime(reply.getWriteTime()))
             .nickname(reply.getNickname())
             .toUserId(reply.getToUserId())
+            .toNickname(reply.getToNickname())
             .no(i++)
             .build();
             

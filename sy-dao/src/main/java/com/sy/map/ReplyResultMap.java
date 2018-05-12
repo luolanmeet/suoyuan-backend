@@ -19,6 +19,7 @@ public interface ReplyResultMap {
         @Result(property = "nickname",        column = "nickname"),
         @Result(property = "avator",          column = "avator"),
         @Result(property = "toUserId",        column = "to_user_id"),
+        @Result(property = "toNickname",        column = "to_nickname"),
         @Result(property = "toReplyId",       column = "to_reply_id"),
         @Result(property = "content",         column = "content"),
         @Result(property = "writeTime",       column = "write_time"),

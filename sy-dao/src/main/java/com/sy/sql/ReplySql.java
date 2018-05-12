@@ -24,9 +24,9 @@ public class ReplySql {
             {
                 INSERT_INTO(TABLE_NAME);
                 INTO_COLUMNS("topic_id, from_user_id, nickname, avator, "
-                           + "to_user_id, to_reply_id, content, write_time");
+                           + "to_user_id, to_nickname, to_reply_id, content, write_time");
                 INTO_VALUES( "#{topicId}, #{fromUserId}, #{nickname}, #{avator}, "
-                           + "#{toUserId}, #{toReplyId}, #{content}, now()");
+                           + "#{toUserId}, #{toNickname}, #{toReplyId}, #{content}, now()");
             }
         }.toString(); 
     }

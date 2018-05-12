@@ -26,6 +26,7 @@ public class Reply implements Serializable {
     private String nickname;
     private String avator;
     private Integer toUserId;     // 被@的人的id
+    private String toNickname;    // 被@的人的昵称
     private Integer toReplyId;    // 回复了那条评论id
     private String content;       // 回复内容
     private Date writeTime;
