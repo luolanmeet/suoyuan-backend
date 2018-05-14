@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.cck.Tag;
 import com.sy.mapper.TagMapper;
 import com.sy.service.ITagService;
 
@@ -27,7 +28,7 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public List<String> get() {
+    public List<Tag> get() {
         
         return tagMapper.get();
     }

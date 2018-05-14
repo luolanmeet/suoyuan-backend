@@ -38,7 +38,7 @@ public class TagSql {
     
     public String get() {
         
-        return "SELECT name FROM "
+        return "SELECT * FROM "
                 +   TABLE_NAME
                 + " ORDER BY topic_num DESC "
                 + " LIMIT "

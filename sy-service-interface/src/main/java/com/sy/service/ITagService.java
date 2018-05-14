@@ -2,6 +2,8 @@ package com.sy.service;
 
 import java.util.List;
 
+import com.cck.Tag;
+
 /**
  *
  * @author cck
@@ -9,5 +11,5 @@ import java.util.List;
 public interface ITagService {
 
     void add(Integer createrId, String name);
-    List<String> get();
+    List<Tag> get();
 }

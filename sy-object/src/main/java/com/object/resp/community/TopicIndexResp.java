@@ -2,6 +2,8 @@ package com.object.resp.community;
 
 import java.util.List;
 
+import com.cck.Tag;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +20,5 @@ import lombok.NoArgsConstructor;
 public class TopicIndexResp {
     
     List<TopicResp> topics;
-    List<String> tags;
+    List<Tag> tags;
 }

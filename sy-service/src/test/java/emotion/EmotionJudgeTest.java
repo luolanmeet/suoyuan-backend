@@ -19,10 +19,13 @@ public class EmotionJudgeTest {
     String str4 = "What is life？What kind of life i am looking for？Please let these questions knock me everyday everyday everyday！";
     String str5 = "今天如果能够把日记分析还有推送都写完，那就是非常棒的一天了。写完这个我就可以做社区功能还有写过几个分词的算法了。加油加油。";
     String str6 = "哈哈，我来测试情感分析功能啦，希望不要太糟糕。";
+    String str7 = "好开心呀 今天";
+    
     
     @Test
     public void testJudge() {
         
+        log.info("{}", judge.judge(m.seg(str7)));
         log.info("{}", judge.judge(m.seg(str1)));
         log.info("{}", judge.judge(m.seg(str2)));
         log.info("{}", judge.judge(m.seg(str3)));

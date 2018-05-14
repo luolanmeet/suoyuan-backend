@@ -50,4 +50,15 @@ public class TopicSql {
             }
         }.toString();
     }
+    
+    public String getByTag(String tag) {
+        
+        return new SQL() {
+            {
+                SELECT("*");
+                FROM(TABLE_NAME);
+                WHERE("tag = #{tag}");
+            }
+        }.toString();
+    }
 }

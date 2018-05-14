@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cck.Reply;
+import com.cck.Tag;
 import com.cck.Topic;
 import com.object.resp.BaseResp;
 import com.object.resp.community.TopicIndexResp;
@@ -76,7 +77,36 @@ public class TopicController extends BaseController {
             topics.add(topicResp);
         }
         
-        List<String> tags = tagService.get();
+        List<Tag> tags = tagService.get();
+        
+        return success(new TopicIndexResp(topics, tags));
+    }
+    
+    @RequestMapping(value = "/topicWithTag") 
+    public BaseResp topic(String tagName) {
+        
+        List<Topic> topic = topicService.getByTag(tagName);
+        
+        List<Integer> userIds = topic.stream()
+                .map(Topic::getUserId)
+                .collect(Collectors.toList());
+        List<String> avators = userService.getAvator(userIds);
+        
+        List<TopicResp> topics = new ArrayList<>();
+        for (int i = 0; i < topic.size(); i++) {
+            
+            Topic temp = topic.get(i);
+            TopicResp topicResp = TopicResp.builder()
+                    .topicId(temp.getId())
+                    .title(temp.getTitle())
+                    .tag(temp.getTag())
+                    .replyNum(temp.getReplyNum())
+                    .avator(avators.get(i))
+                    .build();
+            topics.add(topicResp);
+        }
+        
+        List<Tag> tags = tagService.get();
         
         return success(new TopicIndexResp(topics, tags));
     }

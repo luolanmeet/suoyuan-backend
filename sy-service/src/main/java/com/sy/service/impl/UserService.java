@@ -14,8 +14,10 @@ import com.cck.OpenDirayUser;
 import com.cck.User;
 import com.object.code.ErrorCode;
 import com.object.exception.ErrorCodeException;
+import com.object.req.AddDirayReq;
 import com.sy.mapper.ArticleMapper;
 import com.sy.mapper.UserMapper;
+import com.sy.service.IDirayService;
 import com.sy.service.IUserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +36,9 @@ public class UserService implements IUserService {
     
     @Autowired
     private ArticleMapper articleMapper;
+    
+    @Autowired
+    private IDirayService dirayService;
     
     public final static ThreadLocal<SimpleDateFormat> FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
@@ -100,6 +105,14 @@ public class UserService implements IUserService {
         if(save == 0) {
             throw new ErrorCodeException(ErrorCode.EMAIL_HAS_REGISTER, "邮箱已被注册");
         }
+        
+        // 注册成功时自动插入一条日记录
+        AddDirayReq addDirayReq = AddDirayReq
+                .builder()
+                .userId(user.getId())
+                .content("今天注册了所愿。")
+                .build();
+        dirayService.add(addDirayReq);
     }
 
     @Override

@@ -44,4 +44,9 @@ public class TopicMapperTest {
     public void testGetById() {
         System.out.println(topicMapper.getById(1));
     }
+    
+    @Test
+    public void testGetByTag() {
+        System.out.println(topicMapper.getByTag("说话"));
+    }
 }

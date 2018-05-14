@@ -26,4 +26,9 @@ public interface TopicMapper extends TopicResultMap {
     @ResultMap("map")
     @SelectProvider(type = TopicSql.class, method = "getById")
     Topic getById(Integer topicId);
+    
+    @ResultMap("map")
+    @SelectProvider(type = TopicSql.class, method = "getByTag")
+    List<Topic> getByTag(String tag);
+    
 }

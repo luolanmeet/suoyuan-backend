@@ -16,4 +16,5 @@ public interface ITopicService {
     List<Topic> get();
     TopicDetailResp getTopic(Integer topicId);
     void reply(Reply reply);
+    List<Topic> getByTag(String tag);
 }

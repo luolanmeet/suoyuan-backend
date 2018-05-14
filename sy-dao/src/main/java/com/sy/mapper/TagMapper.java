@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.SelectProvider;
 
+import com.cck.Tag;
 import com.sy.map.TagResultMap;
 import com.sy.sql.TagSql;
 
@@ -25,6 +27,7 @@ public interface TagMapper extends TagResultMap {
             @Param("createrId")Integer createrId, 
             @Param("name")String name);
     
+    @ResultMap("map")
     @SelectProvider(type = TagSql.class, method = "get")
-    List<String> get();
+    List<Tag> get();
 }

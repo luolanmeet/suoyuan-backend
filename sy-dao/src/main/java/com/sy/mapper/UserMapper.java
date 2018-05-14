@@ -3,6 +3,7 @@ package com.sy.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -25,6 +26,7 @@ public interface UserMapper extends UserResultMap {
     int INDEX_NEED_PIC_NUM = 5;
 
     @InsertProvider(type = UserSql.class, method = "save")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int save(User user);
 
     @UpdateProvider(type = UserSql.class, method = "update")

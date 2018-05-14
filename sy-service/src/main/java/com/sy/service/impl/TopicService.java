@@ -137,4 +137,10 @@ public class TopicService implements ITopicService {
             replyMapper.updatePath(reply.getId(), reply.getId() + "/");
         }
     }
+
+    @Override
+    public List<Topic> getByTag(String tag) {
+        
+        return topicMapper.getByTag(tag);
+    }
 }
