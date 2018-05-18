@@ -12,6 +12,7 @@
 		<module>sy-service</module>
 		<module>sy-service-interface</module>
 		<module>sy-web</module>
+		<module>general-service</module>
 	</modules>
 
 	<parent>

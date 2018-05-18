@@ -17,6 +17,7 @@ import com.object.exception.ErrorCodeException;
 import com.object.req.AddDirayReq;
 import com.sy.mapper.ArticleMapper;
 import com.sy.mapper.UserMapper;
+import com.sy.mq.MqSender;
 import com.sy.service.IDirayService;
 import com.sy.service.IUserService;
 
@@ -39,6 +40,9 @@ public class UserService implements IUserService {
     
     @Autowired
     private IDirayService dirayService;
+    
+    @Autowired
+    private MqSender mqSender;
     
     public final static ThreadLocal<SimpleDateFormat> FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
@@ -105,6 +109,10 @@ public class UserService implements IUserService {
         if(save == 0) {
             throw new ErrorCodeException(ErrorCode.EMAIL_HAS_REGISTER, "邮箱已被注册");
         }
+        
+        // 发送MQ消息，让通用服务发送邮件给用户
+        String format = "{'name': %s, 'address' : %s}";
+        mqSender.userRegister(String.format(format, nickname, email));
         
         // 注册成功时自动插入一条日记录
         AddDirayReq addDirayReq = AddDirayReq
