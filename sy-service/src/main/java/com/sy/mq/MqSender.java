@@ -23,10 +23,10 @@ public class MqSender {
      * 给用户发送邮件
      * @param emial
      */
-    public void userRegister(String email) {
+    public void userRegister(String msg) {
         
-        log.info("send message to [{}]", email);
-        rabbitTemplate.convertAndSend(EXCHANGE_NAME, "", email);
+        log.info("send message to [{}]", msg);
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, "", msg);
     }
     
 }

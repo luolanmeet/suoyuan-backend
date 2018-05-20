@@ -111,7 +111,7 @@ public class UserService implements IUserService {
         }
         
         // 发送MQ消息，让通用服务发送邮件给用户
-        String format = "{'name': %s, 'address' : %s}";
+        String format = "{name: '%s', address: '%s'}";
         mqSender.userRegister(String.format(format, nickname, email));
         
         // 注册成功时自动插入一条日记录

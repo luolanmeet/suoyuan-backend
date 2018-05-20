@@ -61,7 +61,7 @@ public class UserMapperTest {
     public void testUpdate() {
 
         User user = User.builder()
-                .id(1)
+                .id(17)
                 .email("3409438184@qq.com")
                 .password("cck")
                 .nickname("Ryan")

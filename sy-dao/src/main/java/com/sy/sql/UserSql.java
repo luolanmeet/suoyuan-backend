@@ -27,8 +27,8 @@ public class UserSql {
         StringBuilder sql = new StringBuilder()
                 .append("INSERT INTO ")
                 .append(TABLE_NAME)
-                .append(" (email, PASSWORD, nickname, avator) ")
-                .append(" SELECT #{email}, #{password}, #{nickname}, #{avator} FROM ")
+                .append(" (email, PASSWORD, nickname) ")
+                .append(" SELECT #{email}, #{password}, #{nickname} FROM ")
                 .append(DUAL_TABLE)
                 .append(" WHERE NOT EXISTS (SELECT 1 FROM ")
                 .append(TABLE_NAME)
@@ -107,7 +107,7 @@ public class UserSql {
                 if(user.getAvator() != null && !("").equals(user.getAvator())) {
                     SET("avator = #{avator}");
                 }
-                if(user.getSignature() != null && !("").equals(user.getSignature())) {
+                if(user.getSignature() != null) {
                     SET("signature = #{signature}");
                 }
                 if(user.getIsOpen() != null) {
