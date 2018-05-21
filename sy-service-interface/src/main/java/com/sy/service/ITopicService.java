@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cck.Reply;
 import com.cck.Topic;
+import com.object.resp.community.ReplyResp;
 import com.object.resp.community.TopicDetailResp;
 
 /**
@@ -17,4 +18,5 @@ public interface ITopicService {
     TopicDetailResp getTopic(Integer topicId);
     void reply(Reply reply);
     List<Topic> getByTag(String tag);
+    List<ReplyResp> getLookReplys(Integer replyId);
 }

@@ -143,4 +143,34 @@ public class TopicService implements ITopicService {
         
         return topicMapper.getByTag(tag);
     }
+    
+    @Override
+    public List<ReplyResp> getLookReplys(Integer replyId) {
+        
+        String path = replyMapper.getPath(replyId);
+        List<Reply> replys = replyMapper.getByPath(path);
+        
+        List<ReplyResp> replyResps = new ArrayList<>(replys.size());
+        
+        int i = 1;
+        for (Reply reply : replys) {
+            
+            ReplyResp replyResp = ReplyResp.builder()
+            .replyId(reply.getId())
+            .userId(reply.getFromUserId())
+            .content(reply.getContent())
+            .avator(reply.getAvator())
+            .time(formatTime(reply.getWriteTime()))
+            .nickname(reply.getNickname())
+            .toUserId(reply.getToUserId())
+            .toNickname(reply.getToNickname())
+            .no(i++)
+            .build();
+            
+            replyResps.add(replyResp);
+        }
+         
+        return replyResps;
+    }
+    
 }

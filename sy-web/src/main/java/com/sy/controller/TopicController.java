@@ -123,4 +123,10 @@ public class TopicController extends BaseController {
         return success();
     }
     
+    @RequestMapping(value = "/getLookReplys") 
+    public BaseResp getLookReplys(Integer replyId) {
+        
+        return success(topicService.getLookReplys(replyId));
+    }
+    
 }
