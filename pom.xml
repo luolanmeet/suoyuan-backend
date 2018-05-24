@@ -13,6 +13,7 @@
 		<module>sy-service-interface</module>
 		<module>sy-web</module>
 		<module>general-service</module>
+		<module>sy-ws-service</module>
 	</modules>
 
 	<parent>

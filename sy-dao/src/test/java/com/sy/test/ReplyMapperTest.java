@@ -28,6 +28,7 @@ public class ReplyMapperTest {
         
         Reply reply = Reply.builder()
                 .topicId(1)
+                .title("生活的意义是什么")
                 .fromUserId(22)
                 .nickname("cck")
                 .avator("avatoravatoravatoravator")

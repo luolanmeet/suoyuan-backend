@@ -23,9 +23,9 @@ public class ReplySql {
         return new SQL() {
             {
                 INSERT_INTO(TABLE_NAME);
-                INTO_COLUMNS("topic_id, from_user_id, nickname, avator, "
+                INTO_COLUMNS("topic_id, title, topic_creater_id, from_user_id, nickname, avator, "
                            + "to_user_id, to_nickname, to_reply_id, content, write_time");
-                INTO_VALUES( "#{topicId}, #{fromUserId}, #{nickname}, #{avator}, "
+                INTO_VALUES( "#{topicId}, #{title}, #{topicCreaterId}, #{fromUserId}, #{nickname}, #{avator}, "
                            + "#{toUserId}, #{toNickname}, #{toReplyId}, #{content}, now()");
             }
         }.toString(); 

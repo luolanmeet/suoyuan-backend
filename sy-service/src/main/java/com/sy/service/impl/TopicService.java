@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.cck.Notify;
 import com.cck.Reply;
 import com.cck.Topic;
 import com.cck.User;
 import com.object.resp.community.ReplyResp;
 import com.object.resp.community.TopicDetailResp;
+import com.sy.mapper.NotifyMapper;
 import com.sy.mapper.ReplyMapper;
 import com.sy.mapper.TopicMapper;
 import com.sy.mapper.UserMapper;
@@ -38,6 +40,9 @@ public class TopicService implements ITopicService {
     
     @Autowired
     private UserMapper userMapper;
+    
+    @Autowired
+    private NotifyMapper notifyMapper;
     
     public final static ThreadLocal<SimpleDateFormat> FORMATTER
         = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
@@ -129,13 +134,44 @@ public class TopicService implements ITopicService {
         
         replyMapper.save(reply);
         
+        String msg = reply.getNickname() + "在 '" + reply.getTitle() + "' 话题下回复了你。";
+        
         if (reply.getToReplyId() != -1) {
             
+            Integer toUserId = reply.getToUserId();
+            
             String path = replyMapper.getPath(reply.getToReplyId());
-            replyMapper.updatePath(reply.getId(), path + reply.getId() + "/");        
+            replyMapper.updatePath(reply.getId(), path + reply.getId() + "/");      
+            
+            // 通知被@的人
+            // 如果不是回复了自己
+            // 如果不是回复了话题创建者
+            if (toUserId != reply.getFromUserId()
+                    && toUserId != reply.getTopicCreaterId()) {
+                
+                Notify notify = Notify.builder()
+                        .userId(toUserId)
+                        .msg(msg)
+                        .topicId(reply.getTopicId())
+                        .build();
+                notifyMapper.save(notify);
+            }
+            
         } else {
             replyMapper.updatePath(reply.getId(), reply.getId() + "/");
         }
+        
+        // 通知话题创建者
+        if (reply.getFromUserId() != reply.getTopicCreaterId()) {
+            
+            Notify notify = Notify.builder()
+                    .userId(reply.getTopicCreaterId())
+                    .msg(msg)
+                    .topicId(reply.getTopicId())
+                    .build();
+            notifyMapper.save(notify);
+        }
+        
     }
 
     @Override
@@ -171,6 +207,24 @@ public class TopicService implements ITopicService {
         }
          
         return replyResps;
+    }
+
+    @Override
+    public Integer getNoReadNum(Integer userId) {
+        
+        return notifyMapper.getNoReadNum(userId);
+    }
+
+    @Override
+    public List<Notify> getNoReadMsg(Integer userId) {
+        
+        return notifyMapper.get(userId);
+    }
+
+    @Override
+    public void updateRead(Integer notifyId) {
+        
+        notifyMapper.updateRead(notifyId);
     }
     
 }

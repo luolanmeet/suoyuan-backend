@@ -129,4 +129,22 @@ public class TopicController extends BaseController {
         return success(topicService.getLookReplys(replyId));
     }
     
+    @RequestMapping(value = "/getNoReadNum") 
+    public BaseResp getNoReadNum(Integer userId) {
+        
+        return success(topicService.getNoReadNum(userId));
+    }
+    
+    @RequestMapping(value = "/getNoReadMsg") 
+    public BaseResp getNoReadMsg(Integer userId) {
+        
+        return success(topicService.getNoReadMsg(userId));
+    }
+    
+    @RequestMapping(value = "/updateRead") 
+    public BaseResp updateRead(Integer notifyId) {
+        
+        topicService.updateRead(notifyId);
+        return success();
+    }
 }
