@@ -87,9 +87,14 @@ public class ImageUtil {
 
     /** 基本的文件路径 */
     private String getBasePath() {
-        String property = System.getProperty("user.dir");
+        
+        // WebMvcConfigurer addResourceLocations 配置了这个路径，这个路径下的资源可以被访问到 
+        return "D:\\suoyuan\\";
+        
+        // 将资源存在项目目录下，会出现项目不刷新，资源无法访问的问题
+        /*String property = System.getProperty("user.dir");
         return property.substring(0, property.lastIndexOf("\\") + 1)
-                + "\\sy-web\\src\\main\\resources\\static\\";
+                + "\\sy-web\\src\\main\\resources\\static\\";*/
     }
 
 }

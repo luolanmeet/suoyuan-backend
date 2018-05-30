@@ -25,7 +25,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/static/");
+                .addResourceLocations("file:D:/suoyuan/", "classpath:/static/");
     }
 
     @Override

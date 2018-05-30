@@ -37,6 +37,7 @@ public class CrawlerSchedule {
      * 每天六点爬一次文章
      */
     @Scheduled(cron = "0 0 6 ? * *")
+    // @Scheduled(fixedRate = 86400000)
     public void crawler() {
         
         List<Article> articles = Crawler.getArticle();

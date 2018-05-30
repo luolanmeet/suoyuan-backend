@@ -21,13 +21,14 @@ public class Crawler {
     private final static String CATEGORY = "http://w.ihx.cc/category/meiriyiwen";
     
     public static void main(String[] args) {
-        System.out.println(category());
+//        System.out.println(category());
         System.out.println(wuzhi());
     }
     
     public static List<Article> getArticle() {
         
-        List<Article> list = Crawler.category();
+        List<Article> list = new ArrayList<>();
+//        list.addAll(Crawler.category());
         list.add(Crawler.wuzhi());
         return list;
     }

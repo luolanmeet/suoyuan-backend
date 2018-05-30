@@ -20,18 +20,20 @@ public class EmotionJudgeTest {
     String str5 = "今天如果能够把日记分析还有推送都写完，那就是非常棒的一天了。写完这个我就可以做社区功能还有写过几个分词的算法了。加油加油。";
     String str6 = "哈哈，我来测试情感分析功能啦，希望不要太糟糕。";
     String str7 = "好开心呀 今天";
+    String str8 = "夜幕来临的冷风有点凉 原本是属于放松心情最好的时候 而我却头痛欲裂 一杯星巴克咖啡丝毫没有缓解疼痛 今天去问了营养师相关资料 昂贵的学费让我不由得冷吸一口气 或许是还没有定点自己的将来 故接下来的路方向不明确 没有清晰的思维不敢踏出第一步 就好像一张白纸不知道上面给自己画的该是怎样的人生 懵懵懂懂之中却带着一丝的想法却无法形成 不知道哪个环节出错了 所以无法环环相扣 找不到原因阻碍了自己想要的生活";
     
     
     @Test
     public void testJudge() {
         
-        log.info("{}", judge.judge(m.seg(str7)));
         log.info("{}", judge.judge(m.seg(str1)));
         log.info("{}", judge.judge(m.seg(str2)));
         log.info("{}", judge.judge(m.seg(str3)));
         log.info("{}", judge.judge(m.seg(str4)));
         log.info("{}", judge.judge(m.seg(str5)));
         log.info("{}", judge.judge(m.seg(str6)));
+        log.info("{}", judge.judge(m.seg(str7)));
+        log.info("{}", judge.judge(m.seg(str8)));
     }
     
 }
