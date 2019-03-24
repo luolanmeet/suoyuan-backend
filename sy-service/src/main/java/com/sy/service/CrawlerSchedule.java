@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import com.cck.Article;
 import com.sy.crawler.Crawler;
@@ -36,7 +35,7 @@ public class CrawlerSchedule {
     /**
      * 每天六点爬一次文章
      */
-    @Scheduled(cron = "0 0 6 ? * *")
+//    @Scheduled(cron = "0 0 6 ? * *")
     // @Scheduled(fixedRate = 86400000)
     public void crawler() {
         
