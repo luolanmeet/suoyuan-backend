@@ -37,8 +37,8 @@ public class EmailUtil {
         
         Email email = Email.builder()
                 .senderAccount("mainem@163.com")
-                .senderName("cck")
-                .senderPassword("zou123")
+                .senderName("xxx")
+                .senderPassword("xxx")
                 .emailSMTPHost("smtp.163.com")
                 .receiverName("")
                 .tile("所愿")
